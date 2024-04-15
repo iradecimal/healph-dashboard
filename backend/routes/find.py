@@ -92,7 +92,7 @@ def sortQuery(query: str):
     
 #===========================================================================================================#
 
-@router.get("/meals/")
+@router.get("/searchmeals/")
 async def search_meal(
     sort: str | None = None,
     uid: Annotated[str | None, Query(pattern="[0-9a-fA-F]{24}")] = None,
@@ -130,10 +130,10 @@ async def search_meal(
     else:
         response = meals.find(filter = find_dict, skip = skip, limit = limit)
         return(json.loads(dumps(response)))
-
+    
 #===========================================================================================================#
 
-@router.get("/intakes/")
+@router.get("/searchintakes/")
 async def search_intake(
     sort: str | None = None,
     uid: Annotated[str | None, Query(pattern="[0-9a-fA-F]{24}")] = None,
@@ -171,5 +171,9 @@ async def search_intake(
     else:
         response = intakes.find(filter = find_dict, skip = skip, limit = limit)
         return(json.loads(dumps(response)))
+
+#===========================================================================================================#
+
+
 
 #===========================================================================================================#
