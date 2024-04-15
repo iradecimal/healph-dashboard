@@ -11,7 +11,10 @@ const MealTablePage = () => {
                     <Sidebar />
                 </Col>
                 <Col md={10}>
+                <h2>Meal Data</h2>
+                    <Row fluid>
                     <MealTable/>
+                    </Row>
                 </Col>
             </Row>
         </Container>

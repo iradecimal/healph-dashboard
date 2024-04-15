@@ -1,6 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap";
 import IntakesTable from "../components/intakes_table";
-import GridTest from "../rangetable";
 import Sidebar from "../components/sidebar";
 import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
 import "ag-grid-community/styles/ag-theme-alpine.css"; 
@@ -15,7 +14,7 @@ const IntakesTablePage = () => {
                 <Col md={10}>
                     <h2>Intake Data</h2>
                     <Row fluid>
-                    <GridTest/>
+                    <IntakesTable/>
                     </Row>
                     {/* <IntakesTable/> */}
                 </Col>
