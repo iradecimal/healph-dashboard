@@ -3,8 +3,8 @@ import axios from "axios";
 import moment from 'moment';
 import { AgGridReact } from 'ag-grid-react';
 import "react-datepicker/dist/react-datepicker.css";
-import "ag-grid-community/styles/ag-theme-alpine.css";
-
+import "ag-grid-community/styles/ag-theme-quartz.css";
+import "./tables.css"
 
 const MealTable = () => {
     const gridRef = useRef();
@@ -55,7 +55,7 @@ const MealTable = () => {
     }), []);   
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/find/meals/`)
+        axios.get(`http://127.0.0.1:8000/find/get-meals/`)
         .then((response) => {
             console.log(response.data);
             setRowData(response.data);
@@ -68,7 +68,7 @@ const MealTable = () => {
     return (
         <>
         
-            <div className="ag-theme-alpine" style={{height: '90vh', width: '100%'}}>
+            <div className="ag-theme-quartz" style={{height: '90vh', width: '100%'}}>
                 <AgGridReact
                 defaultColDef={defaultColDef}
                 rowData={rowData} 

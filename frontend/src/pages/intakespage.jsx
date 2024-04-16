@@ -1,8 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import IntakesTable from "../components/intakes_table";
 import Sidebar from "../components/sidebar";
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
-import "ag-grid-community/styles/ag-theme-alpine.css"; 
 const IntakesTablePage = () => {
     return (
         <>

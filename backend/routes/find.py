@@ -5,6 +5,7 @@ from bson.objectid import ObjectId
 from db import intakes, meals
 from bson.json_util import dumps
 from pymongo import ASCENDING, DESCENDING
+from datetime import date, datetime, timedelta
 import json
 import re
 
@@ -125,13 +126,15 @@ async def search_meal(
         find_dict.update({"foodgroups": splitQuery(foodgroups)})
     if sort:
         sorter = sortQuery(sort)
-        response = meals.find(filter = find_dict, skip = skip, limit = limit).sort(key_or_list=sorter)
+        response = meals.find(
+            filter = find_dict, skip = skip, limit = limit).sort(
+                key_or_list=sorter)
         return(json.loads(dumps(response)))
     else:
-        response = meals.find(filter = find_dict, skip = skip, limit = limit)
+        response = meals.find(
+            filter = find_dict, skip = skip, limit = limit)
         return(json.loads(dumps(response)))
     
-
 #===========================================================================================================#
 
 @router.get("/intakes/")
@@ -167,10 +170,36 @@ async def search_intake(
         find_dict.update({"hale": splitQuery(hale)})
     if sort:
         sorter = sortQuery(sort)
-        response = intakes.find(filter = find_dict, skip = skip, limit = limit).sort(key_or_list=sorter)
+        response = intakes.find(
+            filter = find_dict, skip = skip, limit = limit).sort(
+                key_or_list=sorter)
         return(json.loads(dumps(response)))
     else:
-        response = intakes.find(filter = find_dict, skip = skip, limit = limit)
+        response = intakes.find(
+            filter = find_dict, skip = skip, limit = limit)
         return(json.loads(dumps(response)))
+
+#===========================================================================================================#
+
+@router.get("/get-meals")
+async def get_meals():
+    #dateToday = date.today()
+    dateToday = date.fromisoformat("2023-11-23")
+    datetimeToday = datetime.fromisoformat(dateToday.isoformat())
+    response = meals.find(
+        {'datetime': {'$lte':datetimeToday , '$gte': datetimeToday - timedelta(weeks=4)}}, 
+        {'__v': 0, '_id': 0, 'dailyid': 0})
+    return(json.loads(dumps(response)))
+
+#===========================================================================================================#
+
+@router.get("/get-intakes")
+async def get_intakes():
+    #dateToday = date.today()
+    dateToday = date.fromisoformat("2023-11-23")
+    response = intakes.find(
+        {'date': {'$lte':dateToday.isoformat() , '$gte': (dateToday - timedelta(weeks=4)).isoformat()}}, 
+        {"_id" : 0, "submit": 0})
+    return(json.loads(dumps(response)))
 
 #===========================================================================================================#

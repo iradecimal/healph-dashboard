@@ -5,14 +5,12 @@ import IntakeChartsPage from "./pages/intakechartpage.jsx";
 import TrendsPage from "./pages/trendspage.jsx";
 import IntakesTablePage from "./pages/intakespage.jsx";
 import MealTablePage from "./pages/mealspage.jsx";
-import GridTest from "./rangetable.jsx";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-        <Route exact={true} path="/test" element={<GridTest />} />
           <Route exact={true} path="/" element={<OverviewPage />} />
           <Route exact={true} path="/mealcharts" element={<MealChartsPage />} />
           <Route exact={true} path="/intakecharts" element={<IntakeChartsPage />} />
