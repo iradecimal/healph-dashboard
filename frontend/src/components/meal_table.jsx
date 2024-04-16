@@ -12,38 +12,51 @@ const MealTable = () => {
     const [columnDefs, setColumnDefs] = useState([
         {   headerName: 'User ID', 
             field: 'uid.$oid',
-            sortable: false},
+            sortable: false,
+            width: 275
+        },
         {   headerName: 'Date',
             field: 'datetime',
             valueGetter: p => { return p.data.datetime.$date },
             valueFormatter: p => { moment(p.data.datetime.$date).format('MM/DD/YYYY HH:mm') },
-            filter: 'agDateColumnFilter'},
+            filter: 'agDateColumnFilter',
+            width: 275
+        },
         {   headerName: 'Calories',
+            valueFormatter: p => p.value + " kcal",
             field: 'cal',
-            flex: 2},
+        },
         {   headerName: 'Fats',
+            valueFormatter: p => p.value + " g",
             field: 'fat',
-            flex: 2},
+        },
         {   headerName: 'Carbohydrates',
+            valueFormatter: p => p.value + " g",
             field: 'carbs',
-            flex: 2},
+        },
         {   headerName: 'Proteins',
+            valueFormatter: p => p.value + " g",
             field: 'proteins',
-            flex: 2},
+        },
         {   headerName: 'Waste',
+            valueFormatter: p => p.value + " g",
             field: 'waste',
-            flex: 1},
+        },
         {   headerName: 'Food Groups',
             field: 'foodgroups',
-            flex: 1},
+            tooltipField: 'foodgroups',
+            width: 300
+        },
         {   headerName: 'Meal Description',
-        field: 'mealdesc',
-        flex: 1}
+            field: 'mealdesc',
+            tooltipField: 'mealdesc',
+            width: 300
+        }
     ]);
 
 
     const defaultColDef = useMemo( ()=> ({
-        width: 150,
+        width: 135,
         sortable: true,
         filter: true,
         filterParams: {
@@ -51,7 +64,6 @@ const MealTable = () => {
         },
         
         floatingFilter: true,
-        flex: 3,
     }), []);   
 
     useEffect(() => {

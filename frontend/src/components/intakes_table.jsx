@@ -13,9 +13,14 @@ function IntakesTable() {
     const [columnDefs, setColumnDefs] = useState([
         {   headerName: 'User ID', 
             field: 'uid.$oid',
-            sortable: false},
-        {   field: 'date',},
+            sortable: false,
+            width: 300
+        },
+        {   field: 'date',
+            width: 250
+        },
         {   headerName: 'Caloric Intake',
+            valueFormatter: p => p.value + " kcal",
             field: 'dailycal',
         },
         {   headerName: 'Glasses of Water',
@@ -36,7 +41,7 @@ function IntakesTable() {
     ]);
 
     const defaultColDef = useMemo( ()=> ({
-        width: 150,
+        width: 180,
         sortable: true,
         filter: true,
         filterParams: {
