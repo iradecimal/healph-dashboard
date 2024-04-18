@@ -9,41 +9,35 @@ import axios from "axios";
 
 const TrendsPage = () => {
     var chartstyle = {width: "100%", height: "100%"}
-    const [chartInterval, setChartInterval] = useState("Monthly");
-    const intervalOptions = ["Monthly", "3 Month"];
-    const [trendCharts, setTrendCharts] = useState([]);
-    const [loadingTrendCharts, setLoadingTrendCharts] = useState(true);
+    const [intakeCharts, setIntakeCharts] = useState([]);
+    const [loadingIntakeCharts, setLoadingIntakeCharts] = useState(true);
+    const [mealCharts, setMealCharts] = useState([]);
+    const [loadingMealCharts, setLoadingMealCharts] = useState(true);
 
     useEffect(() => {
         axios.get(`http://localhost:8000/trends/intake/monthly`)
         .then((response) => {
             console.log(response);
-            setTrendCharts(response.data);
-            setLoadingTrendCharts(false);
+            setIntakeCharts(response.data);
+            setLoadingIntakeCharts(false);
         })
         .catch((error) => {
             console.error("Error retrieving charts:", error);
-            setLoadingTrendCharts(false);
+            setLoadingIntakeCharts(false);
+        });
+
+        axios.get(`http://localhost:8000/trends/meal/monthly`)
+        .then((response) => {
+            console.log(response);
+            setMealCharts(response.data);
+            setLoadingMealCharts(false);
+        })
+        .catch((error) => {
+            console.error("Error retrieving charts:", error);
+            setLoadingMealCharts(false);
         });
     }, [])
 
-    const handleChartIntervalChange = (interval) => {
-        setChartInterval(interval);
-
-        let chartAPIURL;
-        if (interval === "Monthly") {
-            chartAPIURL = `http://localhost:8000/trends/intake/monthly`
-        } else if (interval === "3 Month") {
-            chartAPIURL = `http://localhost:8000/trends/intake/3monthly`
-        }
-        axios.get(chartAPIURL)
-        .then((response) => {
-            setTrendCharts(response.data)
-        })
-        .catch((error) => {
-            console.error("Error retrieving charts:", error);
-        })
-    }
 
     return(
         <>
@@ -53,13 +47,15 @@ const TrendsPage = () => {
                 <Sidebar />
             </Col>
             <Col md={10}>
-                <h2>Intake Trends</h2>
+                <h2>User Trends</h2>
+                <Row>
                 {/* <IntervalDropdown
                 options={intervalOptions}
                 selectedInterval={chartInterval}
                 onIntervalChange={handleChartIntervalChange}
                 /> */}
-                { loadingTrendCharts ? (
+                <h3>Daily Intake Trends</h3>
+                { loadingIntakeCharts ? (
                     <Spinner
                         animation="border"
                         role="status"
@@ -71,8 +67,8 @@ const TrendsPage = () => {
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
                                 <Plot 
-                                    data = {trendCharts.dailycalplot.data} 
-                                    layout = {trendCharts.dailycalplot.layout}
+                                    data = {intakeCharts.dailycalplot.data} 
+                                    layout = {intakeCharts.dailycalplot.layout}
                                     style = {chartstyle}
                                 />
                                 </Card>
@@ -80,8 +76,8 @@ const TrendsPage = () => {
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
                                 <Plot 
-                                    data = {trendCharts.sleepplot.data} 
-                                    layout = {trendCharts.sleepplot.layout}
+                                    data = {intakeCharts.sleepplot.data} 
+                                    layout = {intakeCharts.sleepplot.layout}
                                     style = {chartstyle}
                                 />
                                 </Card>
@@ -91,8 +87,8 @@ const TrendsPage = () => {
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
                                 <Plot 
-                                    data = {trendCharts.waterplot.data} 
-                                    layout = {trendCharts.waterplot.layout}
+                                    data = {intakeCharts.waterplot.data} 
+                                    layout = {intakeCharts.waterplot.layout}
                                     style = {chartstyle}
                                 />
                                 </Card>
@@ -100,8 +96,8 @@ const TrendsPage = () => {
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
                                 <Plot 
-                                    data = {trendCharts.stepsplot.data} 
-                                    layout = {trendCharts.stepsplot.layout}
+                                    data = {intakeCharts.stepsplot.data} 
+                                    layout = {intakeCharts.stepsplot.layout}
                                     style = {chartstyle}
                                 />
                                 </Card>
@@ -109,6 +105,76 @@ const TrendsPage = () => {
                         </Row>
                     </Container> 
                 )}
+                </Row>
+                <Row>
+                {/* <IntervalDropdown
+                options={intervalOptions}
+                selectedInterval={chartInterval}
+                onIntervalChange={handleChartIntervalChange}
+                /> */}
+                <h3>Per Plate Trends</h3>
+                { loadingMealCharts ? (
+                    <Spinner
+                        animation="border"
+                        role="status"
+                        style={{ color: "#9FC856" }}
+                    />
+                ) : (
+                    <Container>
+                        <Row>
+                            <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
+                                <Card>
+                                <Plot 
+                                    data = {mealCharts.fatplot.data} 
+                                    layout = {mealCharts.fatplot.layout}
+                                    style = {chartstyle}
+                                />
+                                </Card>
+                            </Col>
+                            <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
+                                <Card>
+                                <Plot 
+                                    data = {mealCharts.proteinsplot.data} 
+                                    layout = {mealCharts.proteinsplot.layout}
+                                    style = {chartstyle}
+                                />
+                                </Card>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
+                                <Card>
+                                <Plot 
+                                    data = {mealCharts.carbsplot.data} 
+                                    layout = {mealCharts.carbsplot.layout}
+                                    style = {chartstyle}
+                                />
+                                </Card>
+                            </Col>
+                            <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
+                                <Card>
+                                <Plot 
+                                    data = {mealCharts.calplot.data} 
+                                    layout = {mealCharts.calplot.layout}
+                                    style = {chartstyle}
+                                />
+                                </Card>
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
+                                <Card>
+                                <Plot 
+                                    data = {mealCharts.wasteplot.data} 
+                                    layout = {mealCharts.wasteplot.layout}
+                                    style = {chartstyle}
+                                />
+                                </Card>
+                            </Col>
+                        </Row>
+                    </Container> 
+                )}
+                </Row>
             </Col>
         </Row>   
         </Container>

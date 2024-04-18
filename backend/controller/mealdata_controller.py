@@ -8,7 +8,7 @@ from pymongoarrow.api import Schema
 # Schemas shared between several functions
 FoodGroupsSchema = Schema({'_id': str, 'count': int})
 FoodCountSchema = Schema({'fat': float, 'carbs': float, 'proteins': float, 'cal': float, 'waste': float})
-FoodAvgSchema = Schema({'_id': str, 'fat': float, 'carbs': float, 'proteins': float, 'cal': float, 'waste': float})
+FoodAvgSchema =  Schema({'_id': str, 'fat': float, 'carbs': float, 'proteins': float, 'cal': float, 'waste': float})
 
 foodgroup = {'$group': {
     '_id': '$foodgroups', 
@@ -103,6 +103,8 @@ def getMealAvgStats(interval: str):
     ]
     df = meals.aggregate_pandas_all(pipeline, schema = FoodAvgSchema)
     df = df.rename(columns={'_id': 'date'})
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%d").dt.date
+    df = df.sort_values(by='date')
 
     return(df)
 
@@ -119,6 +121,8 @@ def getMealAvgStatsSex(sex: str, interval: str):
     ]
     df = meals.aggregate_pandas_all(pipeline, schema = FoodAvgSchema)
     df = df.rename(columns={'_id': 'date'})
+    df['date'] = pd.to_datetime(df['date'], format="%Y-%m-%d").dt.date
+    df = df.sort_values(by='date')
 
     return(df)
 
