@@ -87,7 +87,7 @@ const MealTable = () => {
                 columnDefs={columnDefs}
                 animateRows={true}
                 pagination={true}
-                paginationPageSize={10}
+                paginationPageSize={20}
                 paginationPageSizeSelector={[10,20,50,100]} 
                 />
             </div>

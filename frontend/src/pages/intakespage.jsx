@@ -10,7 +10,7 @@ const IntakesTablePage = () => {
                     <Sidebar />
                 </Col>
                 <Col md={10}>
-                    <h2>Intake Data</h2>
+                    <h2>Daily Intake Data</h2>
                     <Row fluid>
                     <IntakesTable/>
                     </Row>

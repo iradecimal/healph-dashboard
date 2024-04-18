@@ -173,7 +173,7 @@ const MealChartsPage = () => {
                 <Col md={10}>
                     <h2>Meal Charts</h2>
                     <Row>
-                    <h3>Food Group Counts</h3>
+                    <h3>Food Group Per Plate</h3>
                         <Col sm="auto">
                             <IntervalDropdown
                             options={foodgroupIntervalOptions}
@@ -219,7 +219,7 @@ const MealChartsPage = () => {
                         )}
                     </Row>
                     <Row>
-                        <h3>Meal Counts</h3>
+                        <h3>Per Plate Analysis</h3>
                         <Col sm="auto">
                             <IntervalDropdown
                             options={countIntervalOptions}

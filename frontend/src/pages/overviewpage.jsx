@@ -96,7 +96,7 @@ const OverviewPage = () => {
             />
             <Row>
                 {/* Daily Intake Stats*/}
-                <Container>
+
                     <h4>Daily Intake Stats</h4>
                     { loadingIntakeStats ? (
                         <Spinner
@@ -107,7 +107,7 @@ const OverviewPage = () => {
                     ) : (
                         <Container>
                         <Row>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
                                     icon={<FaBolt />}
                                     label="Avg. Calories"
@@ -115,7 +115,7 @@ const OverviewPage = () => {
                                     percentage={intakeStats.adequacy.dailycal}
                                 />
                             </Col>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
                                     icon={<FaGlassWater />}
                                     label="Avg. Glasses of Water"
@@ -123,7 +123,7 @@ const OverviewPage = () => {
                                     percentage={intakeStats.adequacy.waterglass}
                                 />
                             </Col>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
                                     icon={<RiFootprintFill />}
                                     label="Avg. Steps Taken"
@@ -131,7 +131,7 @@ const OverviewPage = () => {
                                     percentage={intakeStats.adequacy.steps}
                                 />
                             </Col>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
                                     icon={<FaMoon/>}
                                     label="Avg. Hours of Sleep"
@@ -141,14 +141,14 @@ const OverviewPage = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <ScoreCard 
                                     icon={<FaCircleNotch />}
                                     label="Avg. HALE"
                                     value={intakeStats.avg.hale}
                                 />
                             </Col>
-                            <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                            <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                                 <ScoreCard 
                                     icon={<RiStarFill/>}
                                     label="Avg. PHD"
@@ -158,11 +158,10 @@ const OverviewPage = () => {
                         </Row>
                         </Container>
                     )}
-                </Container>
             </Row>
             <Row>
                 {/* Meal Stats*/}
-                <Container>
+
                     <h4>Meal Stats</h4>
                     { loadingMealStats ? (
                         <Spinner
@@ -173,7 +172,7 @@ const OverviewPage = () => {
                     ) : (
                     <Container>
                     <Row>
-                        <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                        <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaBreadSlice/>}
                                 label="Avg. Carbohydrate Intake"
@@ -181,7 +180,7 @@ const OverviewPage = () => {
                                 percentage={mealStats.adequacy.carbs}
                             />
                         </Col>
-                        <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                        <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaHamburger/>}
                                 label="Avg. Protein Intake"
@@ -189,7 +188,7 @@ const OverviewPage = () => {
                                 percentage={mealStats.adequacy.proteins}
                             />
                         </Col>
-                        <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                        <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaOilCan/>}
                                 label="Avg. Fat Intake"
@@ -198,14 +197,14 @@ const OverviewPage = () => {
                         </Col>
                     </Row>
                     <Row>
-                        <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                        <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaBolt/>}
                                 label="Avg. Calories"
                                 value={mealStats.avg.cal}
                                 percentage={mealStats.adequacy.cal}                            />
                         </Col>
-                        <Col xl={3} md={6} style={{ marginBottom: "20px" }}>
+                        <Col xl={2} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaTrash/>}
                                 label="Avg. Food Waste"
@@ -215,7 +214,6 @@ const OverviewPage = () => {
                     </Row>
                     </Container>
                     )}
-                </Container>
                 {/* User Stats
                 <Container>
                     <h4>User Stats</h4>
