@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import { Col, Container, Row, Spinner, Card } from "react-bootstrap";
 import Plot from "react-plotly.js";
 import Sidebar from "../components/sidebar.jsx";
-import IntervalDropdown from "../components/intervaldropdown.jsx";
+//import IntervalDropdown from "../components/intervaldropdown.jsx";
+import HamburgerMenu from "../components/hamburgermenu.jsx";
+
 import "./chartcard.css"
 
 import axios from "axios";
@@ -42,6 +44,7 @@ const TrendsPage = () => {
     return(
         <>
         <Container fluid>
+            <HamburgerMenu/>
         <Row>
             <Col md={2} style={{justifyContent: 'left'}}>
                 <Sidebar />

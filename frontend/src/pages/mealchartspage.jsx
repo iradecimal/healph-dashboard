@@ -4,6 +4,7 @@ import Plot from "react-plotly.js";
 import Sidebar from "../components/sidebar.jsx";
 import IntervalDropdown from "../components/intervaldropdown.jsx";
 import SexDropdown from "../components/sexdropdown.jsx";
+import HamburgerMenu from "../components/hamburgermenu";
 import "./chartcard.css"
 
 import axios from "axios";
@@ -166,6 +167,7 @@ const MealChartsPage = () => {
     return(
         <>
         <Container fluid>
+                <HamburgerMenu />
             <Row>
                 <Col md={2}>
                     <Sidebar />

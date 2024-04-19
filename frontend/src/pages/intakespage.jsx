@@ -1,11 +1,13 @@
 import { Container, Row, Col } from "react-bootstrap";
 import IntakesTable from "../components/intakes_table";
 import Sidebar from "../components/sidebar";
+import HamburgerMenu from "../components/hamburgermenu";
 const IntakesTablePage = () => {
     return (
         <>
         <Container fluid>
             <Row>
+                <HamburgerMenu />
                 <Col md={2}>
                     <Sidebar />
                 </Col>

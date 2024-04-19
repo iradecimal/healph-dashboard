@@ -7,6 +7,7 @@ import SexDropdown from "../components/sexdropdown.jsx";
 import "./chartcard.css"
 
 import axios from "axios";
+import HamburgerMenu from "../components/hamburgermenu.jsx";
 
 const IntakeChartsPage = () => {
     //var chartconfig = {responsive: true}
@@ -14,13 +15,13 @@ const IntakeChartsPage = () => {
     const [countInterval, setCountInterval] = useState("Daily");
     const countIntervalOptions = ["Daily", "Weekly", "Monthly"];
     const [countSex, setCountSex] = useState("All");
-    const [avgSex, setAvgSex] = useState("All");
+    //const [avgSex, setAvgSex] = useState("All");
     const [countChartURL, setCountChartURL] = useState(`http://localhost:8000/intakes/count/daily/`)
     const [countChartSex, setCountChartSex] = useState('')
     const [countCharts, setCountCharts] = useState([]);
     const [loadingCountCharts, setLoadingCountCharts] = useState(true);
-    const [avgCharts, setAvgCharts] = useState([]);
-    const [loadingAvgCharts, setLoadingAvgCharts] = useState(true);
+    //const [avgCharts, setAvgCharts] = useState([]);
+    //const [loadingAvgCharts, setLoadingAvgCharts] = useState(true);
 
     useEffect(() => {
         axios.get(countChartURL + countChartSex)
@@ -86,38 +87,39 @@ const IntakeChartsPage = () => {
         });
     }
 
-    const handleAvgSexChange = (sex) => {
-        setAvgSex(sex)
+    // const handleAvgSexChange = (sex) => {
+    //     setAvgSex(sex)
 
-        let AvgAPIURL = `http://127.0.0.1:8000/intakes/avg/monthly`;
-        if (sex == "All") {
-            AvgAPIURL += ""
-        } else if (sex == "Male") {
-            AvgAPIURL += "?sex=m"
-        } else if (sex == "Female") {
-            AvgAPIURL += "?sex=f"
-        }
-        axios.get(AvgAPIURL)
-        .then((response) => {
-            setAvgCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
+    //     let AvgAPIURL = `http://127.0.0.1:8000/intakes/avg/monthly`;
+    //     if (sex == "All") {
+    //         AvgAPIURL += ""
+    //     } else if (sex == "Male") {
+    //         AvgAPIURL += "?sex=m"
+    //     } else if (sex == "Female") {
+    //         AvgAPIURL += "?sex=f"
+    //     }
+    //     axios.get(AvgAPIURL)
+    //     .then((response) => {
+    //         setAvgCharts(response.data);
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error retrieving chart data:", error);
+    //     });
 
-        axios.get(AvgAPIURL)
-        .then((response) => {
-            setAvgCharts(response.data);
-            console.log("resize");
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });     
-    }
+    //     axios.get(AvgAPIURL)
+    //     .then((response) => {
+    //         setAvgCharts(response.data);
+    //         console.log("resize");
+    //     })
+    //     .catch((error) => {
+    //         console.error("Error retrieving chart data:", error);
+    //     });     
+    // }
 
     return(
         <>
         <Container fluid>
+            <HamburgerMenu/>
         <Row>
             <Col lg={2}>
                 <Sidebar />
