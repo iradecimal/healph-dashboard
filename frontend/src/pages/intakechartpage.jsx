@@ -16,7 +16,7 @@ const IntakeChartsPage = () => {
     const countIntervalOptions = ["Daily", "Weekly", "Monthly"];
     const [countSex, setCountSex] = useState("All");
     //const [avgSex, setAvgSex] = useState("All");
-    const [countChartURL, setCountChartURL] = useState(`http://localhost:8000/intakes/count/daily/`)
+    const [countChartURL, setCountChartURL] = useState(`${import.meta.env.VITE_BACKEND}/intakes/count/daily/`)
     const [countChartSex, setCountChartSex] = useState('')
     const [countCharts, setCountCharts] = useState([]);
     const [loadingCountCharts, setLoadingCountCharts] = useState(true);
@@ -34,7 +34,7 @@ const IntakeChartsPage = () => {
             setLoadingCountCharts(false);
         });
 
-        // axios.get(`http://localhost:8000/intakes/avg/monthly`)
+        // axios.get(`${import.meta.env.VITE_BACKEND}/intakes/avg/monthly`)
         // .then((response) => {
         //     console.log(response);
         //     setAvgCharts(response.data);
@@ -51,11 +51,11 @@ const IntakeChartsPage = () => {
         setCountInterval(interval)
 
         if (interval == "Daily") {
-            setCountChartURL(`http://localhost:8000/intakes/count/daily/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/intakes/count/daily/`)
         } else if (interval === "Weekly") {
-            setCountChartURL(`http://127.0.0.1:8000/intakes/count/weekly/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/intakes/count/weekly/`)
         } else if (interval === "Monthly") {
-            setCountChartURL(`http://127.0.0.1:8000/intakes/count/monthly/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/intakes/count/monthly/`)
         }
     }
 

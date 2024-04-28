@@ -20,17 +20,17 @@ const MealChartsPage = () => {
     const [countSex, setCountSex] = useState("All");
     //const [avgInterval, setAvgInterval] = useState("Weekly");
     //const avgIntervalOptions = ["Weekly", "Monthly"];
-    const [foodChartURL, setFoodChartURL] = useState(`http://localhost:8000/meals/foodgroups/daily/`)
+    const [foodChartURL, setFoodChartURL] = useState(`${import.meta.env.VITE_BACKEND}/meals/foodgroups/daily/`)
     const [foodChartSex, setFoodChartSex] = useState('');
     const [foodgroupCharts, setFoodGroupCharts] = useState([]);
     const [loadingFoodGroupCharts, setLoadingFoodGroupCharts] = useState(true);
-    const [countChartURL, setCountChartURL] = useState(`http://localhost:8000/meals/count/daily/`)
+    const [countChartURL, setCountChartURL] = useState(`${import.meta.env.VITE_BACKEND}/meals/count/daily/`)
     const [countChartSex, setCountChartSex] = useState('')
     const [countCharts, setCountCharts] = useState([]);
     const [loadingCountCharts, setLoadingCountCharts] = useState(true);
     //const [avgCharts, setAvgCharts] = useState([]);
     //const [loadingAvgCharts, setLoadingAvgCharts] = useState(true);
-    //const [avgChartURL, setavgChartURL] = useState(`http://localhost:8000/meals/avg/daily/`)
+    //const [avgChartURL, setavgChartURL] = useState(`${import.meta.env.VITE_BACKEND}/meals/avg/daily/`)
     //const [avgSex, setAvgSex] = useState('');
 
     useEffect( () => {
@@ -61,11 +61,11 @@ const MealChartsPage = () => {
     const handleFoodGroupIntervalChange = async (interval) => {
         setFoodGroupInterval(interval)
         if (interval == "Daily") {
-           setFoodChartURL(`http://127.0.0.1:8000/meals/foodgroups/daily/`)
+           setFoodChartURL(`${import.meta.env.VITE_BACKEND}/meals/foodgroups/daily/`)
         } else if (interval === "Weekly") {
-            setFoodChartURL(`http://127.0.0.1:8000/meals/foodgroups/weekly/`)
+            setFoodChartURL(`${import.meta.env.VITE_BACKEND}/meals/foodgroups/weekly/`)
         } else if (interval === "Monthly") {
-            setFoodChartURL(`http://127.0.0.1:8000/meals/foodgroups/monthly/`)
+            setFoodChartURL(`${import.meta.env.VITE_BACKEND}/meals/foodgroups/monthly/`)
         }
     }
 
@@ -83,11 +83,11 @@ const MealChartsPage = () => {
     const handleCountIntervalChange = async (interval) => {
         setCountInterval(interval)
         if (interval == "Daily") {
-            setCountChartURL(`http://127.0.0.1:8000/meals/count/daily/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/meals/count/daily/`)
         } else if (interval === "Weekly") {
-            setCountChartURL(`http://127.0.0.1:8000/meals/count/weekly/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/meals/count/weekly/`)
         } else if (interval === "Monthly") {
-            setCountChartURL(`http://127.0.0.1:8000/meals/count/monthly/`)
+            setCountChartURL(`${import.meta.env.VITE_BACKEND}/meals/count/monthly/`)
         }
     }
 

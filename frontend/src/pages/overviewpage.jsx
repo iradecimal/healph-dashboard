@@ -13,6 +13,7 @@ import { FaBolt, FaGlassWater, FaBreadSlice, FaOilCan } from "react-icons/fa6";
 
 import axios from "axios";
 import ScoreCard from "../components/scorecard.jsx";
+import UserStatsCard from "../components/userstatscard.jsx";
 
 const OverviewPage = () => {
     const [overviewInterval, setOverviewInterval] = useState("Daily");
@@ -20,13 +21,15 @@ const OverviewPage = () => {
     //const [userStats, setUserStats] = useState([]);
     const [intakeStats, setIntakeStats] = useState([]);
     const [mealStats, setMealStats] = useState([]);
+    const [userStats, setUserStats] = useState();
     //const [loadingUserStats, setLoadingUserStats] = useState(true);
     const [loadingIntakeStats, setLoadingIntakeStats] = useState(true);
     const [loadingMealStats, setLoadingMealStats] = useState(true);
+    const [loadingUserStats, setLoadingUserStats] = useState(true);
 
     
     useEffect(() => {
-        axios.get(`http://localhost:8000/avgstats/daily/meals`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/avgstats/daily/meals`)
         .then((response) => {
             console.log(response.data)
             setMealStats(response.data);
@@ -36,10 +39,19 @@ const OverviewPage = () => {
             console.error("Error retrieving meal data:", error);
             setLoadingMealStats(false);
         });
-        axios.get(`http://localhost:8000/avgstats/daily/intake`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/avgstats/daily/intake`)
         .then((response) => {
             setIntakeStats(response.data);
             setLoadingIntakeStats(false);
+        })
+        .catch((error) => {
+            console.error("Error retrieving intake data:", error);
+            setLoadingIntakeStats(false);
+        });
+        axios.get(`${import.meta.env.VITE_BACKEND}/avgstats/activity`)
+        .then((response) => {
+            setUserStats(response.data);
+            setLoadingUserStats(false);
         })
         .catch((error) => {
             console.error("Error retrieving intake data:", error);
@@ -52,14 +64,14 @@ const OverviewPage = () => {
 
         let intakeAPIURL, mealAPIURL;
         if (interval == "Daily") {
-            intakeAPIURL = `http://localhost:8000/avgstats/daily/intake`
-            mealAPIURL = `http://localhost:8000/avgstats/daily/meals`
+            intakeAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/daily/intake`
+            mealAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/daily/meals`
         } else if (interval === "Weekly") {
-            intakeAPIURL = `http://localhost:8000/avgstats/weekly/intake`
-            mealAPIURL = `http://localhost:8000/avgstats/weekly/meals`
+            intakeAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/weekly/intake`
+            mealAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/weekly/meals`
         } else if (interval === "Monthly") {
-            intakeAPIURL = `http://localhost:8000/avgstats/monthly/intake`
-            mealAPIURL = `http://localhost:8000/avgstats/monthly/meals`
+            intakeAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/monthly/intake`
+            mealAPIURL = `${import.meta.env.VITE_BACKEND}/avgstats/monthly/meals`
         }
 
         axios.get(mealAPIURL)
@@ -195,7 +207,8 @@ const OverviewPage = () => {
                                 icon={<FaOilCan/>}
                                 label="Avg. Fat Intake"
                                 value={mealStats.avg.fat}
-                                percentage={mealStats.adequacy.fat}                            />
+                                percentage={mealStats.adequacy.fat}                            
+                            />
                         </Col>
                     </Row>
                     <Row>
@@ -204,38 +217,39 @@ const OverviewPage = () => {
                                 icon={<FaBolt/>}
                                 label="Avg. Calories"
                                 value={mealStats.avg.cal}
-                                percentage={mealStats.adequacy.cal}                            />
+                                percentage={mealStats.adequacy.cal}                            
+                            />
                         </Col>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
                                 icon={<FaTrash/>}
                                 label="Avg. Food Waste"
                                 value={mealStats.avg.waste}
-                                percentage={mealStats.adequacy.waste}                            />
+                                percentage={mealStats.adequacy.waste}                            
+                            />
                         </Col>
                     </Row>
                     </Container>
                     )}
-                {/* User Stats
-                <Container>
                     <h4>User Stats</h4>
-                    <Row>
-                        <Col>
-                            <StatsCard 
-                                icon={},
-                                label="",
-                                value={}
+                    { loadingUserStats ? (
+                            <Spinner
+                                animation="border"
+                                role="status"
+                                style={{ color: "#9FC856" }}
                             />
-                        </Col>
-                        <Col>
-                            <StatsCard 
-                                icon={},
-                                label="",
-                                value={}
-                            />
-                        </Col>
-                    </Row>
-                </Container> */}
+                        ) : (
+                        <Container>
+                            <Row>
+                            <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
+                                <UserStatsCard 
+                                    label={"Current Users"}
+                                    value={userStats}                           
+                                />
+                            </Col>
+                            </Row>
+                        </Container>
+                        )} 
             </Row>
         </div> 
         </Col>

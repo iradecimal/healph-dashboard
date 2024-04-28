@@ -17,7 +17,7 @@ const TrendsPage = () => {
     const [loadingMealCharts, setLoadingMealCharts] = useState(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/trends/intake/monthly`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/trends/intake/monthly`)
         .then((response) => {
             console.log(response);
             setIntakeCharts(response.data);
@@ -28,7 +28,7 @@ const TrendsPage = () => {
             setLoadingIntakeCharts(false);
         });
 
-        axios.get(`http://localhost:8000/trends/meal/monthly`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/trends/meal/monthly`)
         .then((response) => {
             console.log(response);
             setMealCharts(response.data);

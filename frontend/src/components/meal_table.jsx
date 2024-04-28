@@ -67,7 +67,7 @@ const MealTable = () => {
     }), []);   
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/find/get-meals/`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/find/get-meals/`)
         .then((response) => {
             console.log(response.data);
             setRowData(response.data);

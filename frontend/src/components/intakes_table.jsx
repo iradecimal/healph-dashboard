@@ -51,7 +51,7 @@ function IntakesTable() {
     }), []);   
 
     useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/find/get-intakes/`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/find/get-intakes/`)
         .then((response) => {
             console.log(response.data);
             setRowData(response.data);

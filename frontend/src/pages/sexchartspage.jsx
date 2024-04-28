@@ -21,7 +21,7 @@ const SexChartsPage = () => {
     const [loadingAvgCharts, setLoadingAvgCharts] = useState(true);
     
     useEffect(() => {
-        axios.get(`http://localhost:8000/sex/counts/weekly`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/sex/counts/weekly`)
         .then((response) => {
             console.log(response);
             setCountCharts(response.data[0]);
@@ -33,7 +33,7 @@ const SexChartsPage = () => {
             setLoadingCountCharts(false);
         });
 
-        axios.get(`http://localhost:8000/sex/average/weekly`)
+        axios.get(`${import.meta.env.VITE_BACKEND}/sex/average/weekly`)
         .then((response) => {
             console.log(response);
             setAvgCharts(response.data[0]);
@@ -51,9 +51,9 @@ const SexChartsPage = () => {
 
         let CountAPIURL;
         if (interval === "Weekly") {
-            CountAPIURL = `http://127.0.0.1:8000/sex/counts/weekly`
+            CountAPIURL = `${import.meta.env.VITE_BACKEND}/sex/counts/weekly`
         } else if (interval === "Monthly") {
-            CountAPIURL = `http://127.0.0.1:8000/sex/counts/monthly`
+            CountAPIURL = `${import.meta.env.VITE_BACKEND}/sex/counts/monthly`
         }
 
         axios.get(CountAPIURL)
@@ -72,9 +72,9 @@ const SexChartsPage = () => {
 
         let AvgAPIURL;
         if (interval == "Weekly") {
-            AvgAPIURL = `http://127.0.0.1:8000/sex/average/weekly`
+            AvgAPIURL = `${import.meta.env.VITE_BACKEND}/sex/average/weekly`
         } else if (interval === "Monthly") {
-            AvgAPIURL = `http://127.0.0.1:8000/sex/average/monthly`
+            AvgAPIURL = `${import.meta.env.VITE_BACKEND}/sex/average/monthly`
         }
 
         axios.get(AvgAPIURL)

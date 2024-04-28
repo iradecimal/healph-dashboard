@@ -1,14 +1,30 @@
 //import React from "react";
-import Card from "react-bootstrap";
-import  BsFillPersonFill  from "react-icons/bs";
+import Card from "react-bootstrap/Card";
 import PropTypes from "prop-types";
+import { FaUserCircle } from "react-icons/fa";
 
-const StatsCard = ({label, value}) => (
-    <Card>
+const UserStatsCard = ({label, value}) => (
+    <Card
+    style={{
+      marginBottom: "10px",
+      height: "100%",
+      borderColor: "#9FC856",
+    }}
+    >
+        <Card.Header
+                style={{
+                    marginBottom: "0.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    color: "#9FC856",
+                }}
+              >
+                <FaUserCircle />
+                <span style={{ marginLeft: "10px", color: " #757575" }}>
+                    {label}
+                </span>
+        </Card.Header>
         <Card.Body>
-            <Card.Title>
-            <BsFillPersonFill />{label}
-            </Card.Title>
             <Card.Text>
                 {value}
             </Card.Text>
@@ -17,9 +33,9 @@ const StatsCard = ({label, value}) => (
     </Card>
 )
 
-StatsCard.propTypes = {
+UserStatsCard.propTypes = {
     label: PropTypes.string,
     value: PropTypes.number
 }
 
-export default StatsCard;
+export default UserStatsCard;
