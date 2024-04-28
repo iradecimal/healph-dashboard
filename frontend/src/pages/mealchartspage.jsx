@@ -43,7 +43,9 @@ const MealChartsPage = () => {
             console.error("Error retrieving charts:", error);
             setLoadingFoodGroupCharts(false);
         });
+    }, [foodChartSex, foodChartURL])
 
+    useEffect( () => {
         axios.get(countChartURL + countChartSex)
         .then((response) => {
             setCountCharts(response.data);
@@ -51,25 +53,13 @@ const MealChartsPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving charts:", error);
-            //setLoadingCountCharts(false);
+            setLoadingCountCharts(false);
         });
-
-        // useEffect( () => { 
-        //     axios.get(`http://localhost:8000/meals/avg/weekly`)
-        //     .then((response) => {
-        //         setAvgCharts(response.data);
-        //         setLoadingAvgCharts(false);
-        //     })
-        //     .catch((error) => {
-        //         console.error("Error retrieving charts:", error);
-        //         setLoadingAvgCharts(false);
-        //     });
-    }, [])
+    }, [countChartSex, countChartURL])
 
     
     const handleFoodGroupIntervalChange = async (interval) => {
         setFoodGroupInterval(interval)
-        console.log('1')
         if (interval == "Daily") {
            setFoodChartURL(`http://127.0.0.1:8000/meals/foodgroups/daily/`)
         } else if (interval === "Weekly") {
@@ -77,18 +67,10 @@ const MealChartsPage = () => {
         } else if (interval === "Monthly") {
             setFoodChartURL(`http://127.0.0.1:8000/meals/foodgroups/monthly/`)
         }
-        axios.get(foodChartURL + foodChartSex)
-        .then( (response) => {
-            setFoodGroupCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
 
     const handleFoodGroupSexChange = async (sex) => {
         setFoodGroupSex(sex)
-
         if (sex == "All") {
             setFoodChartSex("")
         } else if (sex == "Male") {
@@ -96,18 +78,10 @@ const MealChartsPage = () => {
         } else if (sex == "Female") {
             setFoodChartSex("?sex=f")
         }
-        axios.get(foodChartURL + foodChartSex)
-        .then( (response) => {
-            setFoodGroupCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
 
     const handleCountIntervalChange = async (interval) => {
         setCountInterval(interval)
-
         if (interval == "Daily") {
             setCountChartURL(`http://127.0.0.1:8000/meals/count/daily/`)
         } else if (interval === "Weekly") {
@@ -115,19 +89,10 @@ const MealChartsPage = () => {
         } else if (interval === "Monthly") {
             setCountChartURL(`http://127.0.0.1:8000/meals/count/monthly/`)
         }
-
-        axios.get(countChartURL + countChartSex)
-        .then((response) => {
-            setCountCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
 
     const handleCountSexChange = async (sex) => {
         setCountSex(sex)
-
         if (sex == "All") {
             setCountChartSex("")
         } else if (sex == "Male") {
@@ -135,34 +100,7 @@ const MealChartsPage = () => {
         } else if (sex == "Female") {
             setCountChartSex("?sex=f")
         }
-        axios.get(countChartURL + countChartSex)
-        .then((response) => {
-            setCountCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
-
-    // const handleAvgIntervalChange = (interval) => {
-    //     setAvgInterval(interval)
-
-    //     let AvgAPIURL;
-    //     if (interval == "Weekly") {
-    //         AvgAPIURL = `http://127.0.0.1:8000/meals/avg/weekly`
-    //     } else if (interval === "Monthly") {
-    //         AvgAPIURL = `http://127.0.0.1:8000/meals/avg/monthly`
-    //     }
-
-    //     axios.get(AvgAPIURL)
-    //     .then((response) => {
-    //         setAvgCharts(response.data);
-            
-    //     })
-    //     .catch((error) => {
-    //         console.error("Error retrieving chart data:", error);
-    //     });
-    // }
 
     return(
         <>

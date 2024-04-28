@@ -26,7 +26,6 @@ const IntakeChartsPage = () => {
     useEffect(() => {
         axios.get(countChartURL + countChartSex)
         .then((response) => {
-            console.log(response);
             setCountCharts(response.data);
             setLoadingCountCharts(false);
         })
@@ -58,14 +57,6 @@ const IntakeChartsPage = () => {
         } else if (interval === "Monthly") {
             setCountChartURL(`http://127.0.0.1:8000/intakes/count/monthly/`)
         }
-
-        axios.get(countChartURL+countChartSex)
-        .then((response) => {
-            setCountCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
 
     const handleCountSexChange = (sex) => {
@@ -78,13 +69,6 @@ const IntakeChartsPage = () => {
         } else if (sex == "Female") {
             setCountChartSex("?sex=f")
         }
-        axios.get(countChartURL+countChartSex)
-        .then((response) => {
-            setCountCharts(response.data);
-        })
-        .catch((error) => {
-            console.error("Error retrieving chart data:", error);
-        });
     }
 
     // const handleAvgSexChange = (sex) => {
