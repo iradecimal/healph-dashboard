@@ -3,7 +3,7 @@ from starlette.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from routes import avgstats, mealcharts, intakecharts, trends, find
 
-app = FastAPI()
+app = FastAPI(docs_url=None, redoc_url=None)
 
 origins = ["*"]
 
