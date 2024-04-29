@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from routes import avgstats, mealcharts, intakecharts, trends, find
 
 app = FastAPI(docs_url=None, redoc_url=None)
-
+  
 origins = ["*"]
 
 app.add_middleware(
