@@ -1,9 +1,16 @@
-import { useState, useEffect, useMemo, useRef} from "react";
-import axios from "axios";
+import { useState, useRef, useMemo, useEffect, useCallback, } from 'react';
+import axios from 'axios';
 import moment from 'moment';
+import {Row, Col, Button } from "react-bootstrap";
+
 import { AgGridReact } from 'ag-grid-react';
-import "react-datepicker/dist/react-datepicker.css";
+import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+import { CsvExportModule } from "@ag-grid-community/csv-export";
+import { ModuleRegistry } from "@ag-grid-community/core";
+ModuleRegistry.registerModules([ClientSideRowModelModule, CsvExportModule]);
+
 import "./tables.css"
 
 const MealTable = () => {
@@ -77,11 +84,23 @@ const MealTable = () => {
         });
     }, [])
 
+    const onBtnExport = useCallback(() => {
+        gridRef.current.api.exportDataAsCsv();
+      }, []);
+
     return (
         <>
-        
+            <Row>
+            <Col lg={3} md={6}>
+                <Button variant="success" size="sm" onClick={onBtnExport}>
+                    Download CSV export file
+                </Button >
+            </Col>
+            </Row>
+            <Row>
             <div className="ag-theme-quartz" style={{height: '90vh', width: '100%'}}>
                 <AgGridReact
+                ref={gridRef}
                 defaultColDef={defaultColDef}
                 rowData={rowData} 
                 columnDefs={columnDefs}
@@ -91,7 +110,7 @@ const MealTable = () => {
                 paginationPageSizeSelector={[10,20,50,100]} 
                 />
             </div>
-        
+            </Row>
         </>
     );
 }
