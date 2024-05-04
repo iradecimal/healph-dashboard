@@ -5,7 +5,8 @@ import PropTypes from "prop-types";
 const ScoreCard = ({
     icon, 
     label, 
-    value
+    value,
+    valuelabel
 }) => (
     <Card
     style={{
@@ -29,7 +30,7 @@ const ScoreCard = ({
         </Card.Header>
         <Card.Body>    
             <Card.Text>
-                {Math.round(value * 100)/100}
+                {Math.round(value * 100)/100} {valuelabel}
             </Card.Text>
         </Card.Body>
     </Card>
@@ -38,7 +39,8 @@ const ScoreCard = ({
 ScoreCard.propTypes = {
     icon : PropTypes.object,
     label: PropTypes.string,
-    value: PropTypes.number
+    value: PropTypes.number,
+    valuelabel: PropTypes.string
 }
 
 export default ScoreCard;

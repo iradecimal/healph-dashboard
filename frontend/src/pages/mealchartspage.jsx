@@ -159,7 +159,7 @@ const MealChartsPage = () => {
                         )}
                     </Row>
                     <Row>
-                        <h3>Per Plate Analysis</h3>
+                        <h3>Per Plate Adequacy Analysis</h3>
                         <Col sm="auto">
                             <IntervalDropdown
                             options={countIntervalOptions}

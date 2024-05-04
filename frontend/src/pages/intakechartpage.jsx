@@ -111,7 +111,7 @@ const IntakeChartsPage = () => {
             <Col xl={10}>
                 <h2>Intake Charts</h2>
                 <Row>
-                    <h3>Intake Counts</h3>
+                    <h3>Intake Adequacy Analysis</h3>
                     <Row fluid>
                         <Col sm="auto">
                             <IntervalDropdown

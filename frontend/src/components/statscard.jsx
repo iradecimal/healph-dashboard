@@ -6,6 +6,7 @@ const StatsCard = ({
     icon, 
     label, 
     value,
+    valuelabel,
     percentage
 }) => (
     <Card
@@ -30,7 +31,7 @@ const StatsCard = ({
             </Card.Header>
         <Card.Body>
             <Card.Text>
-                {Math.round(value * 100)/100}
+                {Math.round(value * 100)/100} {valuelabel}
             </Card.Text>
         </Card.Body>
         <Card.Footer>
@@ -43,6 +44,7 @@ StatsCard.propTypes = {
     icon : PropTypes.object,
     label: PropTypes.string,
     value: PropTypes.number,
+    valuelabel: PropTypes.string,
     percentage: PropTypes.number
 }
 

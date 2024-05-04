@@ -126,6 +126,7 @@ const OverviewPage = () => {
                                     icon={<FaBolt />}
                                     label="Avg. Calories"
                                     value={intakeStats.avg.dailycal}
+                                    valuelabel={'kcal'}
                                     percentage={intakeStats.adequacy.dailycal}
                                 />
                             </Col>
@@ -142,6 +143,7 @@ const OverviewPage = () => {
                                     icon={<RiFootprintFill />}
                                     label="Avg. Steps Taken"
                                     value={intakeStats.avg.steps}
+                                    valuelabel={'glasses'}
                                     percentage={intakeStats.adequacy.steps}
                                 />
                             </Col>
@@ -150,6 +152,7 @@ const OverviewPage = () => {
                                     icon={<FaMoon/>}
                                     label="Avg. Hours of Sleep"
                                     value={intakeStats.avg.sleephrs}
+                                    valuelabel={'hours'}
                                     percentage={intakeStats.adequacy.sleephrs}
                                 />
                             </Col>
@@ -160,6 +163,7 @@ const OverviewPage = () => {
                                     icon={<FaCircleNotch />}
                                     label="Avg. HALE"
                                     value={intakeStats.avg.hale}
+                                    valuelabel={''}
                                 />
                             </Col>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
@@ -167,6 +171,7 @@ const OverviewPage = () => {
                                     icon={<RiStarFill/>}
                                     label="Avg. PHD"
                                     value={intakeStats.avg.phd}
+                                    valuelabel={''}
                                 />
                             </Col>
                         </Row>
@@ -191,6 +196,7 @@ const OverviewPage = () => {
                                 icon={<FaBreadSlice/>}
                                 label="Avg. Carbohydrate Intake"
                                 value={mealStats.avg.carbs}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.carbs}
                             />
                         </Col>
@@ -199,6 +205,7 @@ const OverviewPage = () => {
                                 icon={<FaHamburger/>}
                                 label="Avg. Protein Intake"
                                 value={mealStats.avg.proteins}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.proteins}
                             />
                         </Col>
@@ -207,6 +214,7 @@ const OverviewPage = () => {
                                 icon={<FaOilCan/>}
                                 label="Avg. Fat Intake"
                                 value={mealStats.avg.fat}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.fat}                            
                             />
                         </Col>
@@ -217,15 +225,16 @@ const OverviewPage = () => {
                                 icon={<FaBolt/>}
                                 label="Avg. Calories"
                                 value={mealStats.avg.cal}
+                                valuelabel={'kcal'}
                                 percentage={mealStats.adequacy.cal}                            
                             />
                         </Col>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
-                            <StatsCard 
+                            <ScoreCard 
                                 icon={<FaTrash/>}
                                 label="Avg. Food Waste"
-                                value={mealStats.avg.waste}
-                                percentage={mealStats.adequacy.waste}                            
+                                valuelabel={'g'}
+                                value={mealStats.avg.waste}                        
                             />
                         </Col>
                     </Row>
