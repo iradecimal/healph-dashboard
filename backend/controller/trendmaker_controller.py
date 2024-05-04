@@ -42,10 +42,10 @@ def makeIntakePredictions(df: DataFrame, interval: int) -> list:
     dateToday = date.fromisoformat("2023-11-23")
 
     if trends.count_documents({'date': dateToday.isoformat(), 'type' : 'intake'}, limit = 1) == 0:
-        figdailycal = PredictTrends(df, "dailycal", interval, 'rgb(46, 184, 46)', "Caloric Intake", "calories")
-        figsleep = PredictTrends(df, "sleephrs", interval, 'rgb(119, 51, 255)', "Hours of Sleep", "hours")
-        figwater = PredictTrends(df, "waterglass", interval, 'rgb(0, 172, 230)', "Water Intake in Glasses", "glasses")
-        figsteps = PredictTrends(df, "steps", interval, 'rgb(51, 204, 51)', "Steps Taken Daily", "steps")
+        figdailycal = PredictTrends(df, "dailycal", interval, 'rgb(46, 184, 46)', "Average Caloric Intake", "calories (in kcal)")
+        figsleep = PredictTrends(df, "sleephrs", interval, 'rgb(119, 51, 255)', "Average Hours of Sleep", "hours")
+        figwater = PredictTrends(df, "waterglass", interval, 'rgb(0, 172, 230)', "Average Water Intake in Glasses", "glasses (per 250ml)")
+        figsteps = PredictTrends(df, "steps", interval, 'rgb(51, 204, 51)', "Average Steps Taken Daily", "steps")
 
         data = {
             "date": dateToday.isoformat(),
@@ -70,11 +70,11 @@ def makeMealPredictions(df: DataFrame, interval: int) -> list:
     data = []
     if trends.count_documents({'date': dateToday.isoformat(), 'type': 'meal'}, limit = 1) == 0:
 
-        figfat = PredictTrends(df, "fat", interval, 'rgb(255, 153, 0)', "Fat Intake", "fat")
-        figcarbs = PredictTrends(df, "carbs", interval, 'rgb(115, 230, 0)', "Carb Intake", "carbohydrates")
-        figproteins = PredictTrends(df, "proteins", interval, 'rgb(179, 36, 0)', "Protein Intake", "proteins")
-        figcal = PredictTrends(df, "cal", interval, 'rgb(77, 136, 255)', "Calories per Meal", "calories")
-        figwaste = PredictTrends(df, "waste", interval, 'rgb(102, 0, 51)', "Waste", "waste")
+        figfat = PredictTrends(df, "fat", interval, 'rgb(255, 153, 0)', "Average Fat Intake", "fat (in g)")
+        figcarbs = PredictTrends(df, "carbs", interval, 'rgb(115, 230, 0)', "Average Carb Intake", "carbohydrates (in g)")
+        figproteins = PredictTrends(df, "proteins", interval, 'rgb(179, 36, 0)', "Average Protein Intake", "proteins (in g)")
+        figcal = PredictTrends(df, "cal", interval, 'rgb(77, 136, 255)', "Average Calories per Meal", "calories (in kcal)")
+        figwaste = PredictTrends(df, "waste", interval, 'rgb(102, 0, 51)', "Waste", "waste (in g)")
 
         data = {
             "date": dateToday.isoformat(),

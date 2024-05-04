@@ -12,8 +12,8 @@ const SexDropdown = ({
         "Female"
     ]
     return(
-        <Dropdown className = "interval-picker">
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+        <Dropdown className = "interval-picker" >
+            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{fontSize:"18px", fontWeight:"600"}}>
                 {selectedSex}
             </Dropdown.Toggle>
 

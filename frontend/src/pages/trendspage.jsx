@@ -50,7 +50,7 @@ const TrendsPage = () => {
                 <Sidebar />
             </Col>
             <Col md={10}>
-                <h2>User Trends</h2>
+                <h2>Monthly User Trends</h2>
                 <Row>
                 {/* <IntervalDropdown
                 options={intervalOptions}

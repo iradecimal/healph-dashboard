@@ -92,7 +92,8 @@ const MealTable = () => {
         <>
             <Row>
             <Col lg={3} md={6}>
-                <Button variant="success" size="sm" onClick={onBtnExport}>
+                <Button variant="success" size="md" onClick={onBtnExport}
+                style={{fontWeight: "600", fontSize:"16px"}}>
                     Download CSV export file
                 </Button >
             </Col>

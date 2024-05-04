@@ -24,12 +24,12 @@ const ScoreCard = ({
                 }}
               >
                 {icon} 
-                <span style={{ marginLeft: "10px", color: " #757575" }}>
+                <span style={{ marginLeft: "10px", color: " #757575", fontWeight: "bold"  }}>
                     {label}
                 </span>
         </Card.Header>
         <Card.Body>    
-            <Card.Text>
+        <Card.Text style={{fontWeight: "600", fontSize:"18px"}}>
                 {Math.round(value * 100)/100} {valuelabel}
             </Card.Text>
         </Card.Body>

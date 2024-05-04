@@ -19,13 +19,13 @@ const UserStatsCard = ({label, value}) => (
                     color: "#9FC856",
                 }}
               >
-                <FaUserCircle />
-                <span style={{ marginLeft: "10px", color: " #757575" }}>
+                <FaUserCircle size={25}/>
+                <span style={{ marginLeft: "10px", color: " #757575", fontWeight: "bold" }}>
                     {label}
                 </span>
         </Card.Header>
         <Card.Body>
-            <Card.Text>
+            <Card.Text style={{fontWeight: "600", fontSize:"18px"}}>
                 {value}
             </Card.Text>
         </Card.Body>
