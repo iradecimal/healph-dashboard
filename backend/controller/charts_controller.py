@@ -54,7 +54,7 @@ def makeIntakeAdequacyCharts(df: DataFrame) -> list:
                                         ["#AFEBAF","#7FDF7F","#4FD34F","#2EB82E"]
                                       )
 
-    figsleep = makeAdequacyPieChart(df, "sleephrs", [0, (9*.6), (9*.8), 9, float('inf')], labels, "Sleep Hours (in hrs)", 
+    figsleep = makeAdequacyPieChart(df, "sleephrs", [0, (9*.6), (9*.8), 8, float('inf')], labels, "Sleep Hours (in hrs)", 
                                         ["#C5ADF5","#A37DF0","#804CEA","#5E1BE4"]
                                    )
     
