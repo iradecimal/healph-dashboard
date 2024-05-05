@@ -51,7 +51,10 @@ const TrendsPage = () => {
             </Col>
             <Col md={10}>
                 <h2>Monthly User Trends</h2>
-                <Row>
+                <Row style={{
+                    padding:"0 15px 0 15px",
+                    marginBottom:"20px"
+                }}>
                 {/* <IntervalDropdown
                 options={intervalOptions}
                 selectedInterval={chartInterval}

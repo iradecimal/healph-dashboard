@@ -8,10 +8,10 @@ const IntakesTablePage = () => {
         <Container fluid>
             <Row>
                 <HamburgerMenu />
-                <Col md={2}>
+                <Col lg={2}>
                     <Sidebar />
                 </Col>
-                <Col md={10}>
+                <Col lg={10}>
                     <h2>Daily Intake Data</h2>
                     <Row fluid>
                     <IntakesTable/>

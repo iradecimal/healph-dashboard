@@ -108,9 +108,12 @@ const IntakeChartsPage = () => {
             <Col lg={2}>
                 <Sidebar />
             </Col>
-            <Col xl={10}>
+            <Col lg={10}>
                 <h2>Intake Charts</h2>
-                <Row>
+                <Row  style={{
+                    padding:"0 15px 0 15px",
+                    marginBottom:"20px"
+                }}>
                     <h3>Intake Adequacy Analysis</h3>
                     <Row fluid>
                         <Col sm="auto">

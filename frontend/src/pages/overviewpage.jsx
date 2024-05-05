@@ -96,11 +96,11 @@ const OverviewPage = () => {
     <Container fluid>
         <HamburgerMenu/>
     <Row>
-        <Col md={2}>
+        <Col lg={2}>
             <Sidebar />
         </Col>
 
-        <Col md={10}>
+        <Col lg={10}>
         <div>
             <h2>Overview</h2>
             <IntervalDropdown
