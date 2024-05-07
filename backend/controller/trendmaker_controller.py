@@ -38,8 +38,8 @@ def PredictTrends(df: DataFrame, column: str, interval: int, color: str, title: 
 #===========================================================================================================#
 
 def makeIntakePredictions(df: DataFrame, interval: int) -> list:
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23")
+    dateToday = date.today()
+    #dateToday = date.fromisoformat("2023-11-23")
 
     if trends.count_documents({'date': dateToday.isoformat(), 'type' : 'intake'}, limit = 1) == 0:
         figdailycal = PredictTrends(df, "dailycal", interval, 'rgb(46, 184, 46)', "Average Caloric Intake", "calories (in kcal)")

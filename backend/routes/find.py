@@ -183,8 +183,8 @@ async def search_intake(
 
 @router.get("/get-meals")
 async def get_meals():
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23")
+    dateToday = date.today()
+    #dateToday = date.fromisoformat("2023-11-23")
     datetimeToday = datetime.fromisoformat(dateToday.isoformat())
     response = meals.find(
         {'datetime': {'$lte':datetimeToday , '$gte': datetimeToday - timedelta(weeks=4)}}, 
@@ -195,8 +195,8 @@ async def get_meals():
 
 @router.get("/get-intakes")
 async def get_intakes():
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23")
+    dateToday = date.today()
+    #dateToday = date.fromisoformat("2023-11-23")
     response = intakes.find(
         {'date': {'$lte':dateToday.isoformat() , '$gte': (dateToday - timedelta(weeks=4)).isoformat()}}, 
         {"_id" : 0, "submit": 0})

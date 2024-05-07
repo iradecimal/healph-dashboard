@@ -42,8 +42,8 @@ intakecountproject = {'$project': {
 #===========================================================================================================#
 
 def getDateInterval(interval: str):
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23") #testing purposes
+    dateToday = date.today()
+    #dateToday = date.fromisoformat("2023-11-23") #testing purposes
     dateBefore = ''
     if interval == "daily":
         dateBefore = dateToday - timedelta(days=1)
