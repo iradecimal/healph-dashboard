@@ -135,6 +135,7 @@ const OverviewPage = () => {
                                     icon={<FaGlassWater size={25}/>}
                                     label="Avg. Glasses of Water"
                                     value={intakeStats.avg.waterglass}
+                                    valuelabel={'glasses'}
                                     percentage={intakeStats.adequacy.waterglass}
                                 />
                             </Col>
@@ -143,7 +144,7 @@ const OverviewPage = () => {
                                     icon={<RiFootprintFill size={25}/>}
                                     label="Avg. Steps Taken"
                                     value={intakeStats.avg.steps}
-                                    valuelabel={'glasses'}
+                                    valuelabel={'steps'}
                                     percentage={intakeStats.adequacy.steps}
                                 />
                             </Col>
