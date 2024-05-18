@@ -36,7 +36,7 @@ const TrendsPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving charts:", error);
-            setLoadingMealCharts(false);
+            //setLoadingMealCharts(false);
         });
     }, [])
 

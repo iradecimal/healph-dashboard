@@ -41,7 +41,7 @@ const MealChartsPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving charts:", error);
-            setLoadingFoodGroupCharts(false);
+            //setLoadingFoodGroupCharts(false);
         });
     }, [foodChartSex, foodChartURL])
 
@@ -53,7 +53,7 @@ const MealChartsPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving charts:", error);
-            setLoadingCountCharts(false);
+            //setLoadingCountCharts(false);
         });
     }, [countChartSex, countChartURL])
 
