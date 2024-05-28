@@ -37,58 +37,43 @@ def PredictTrends(df: DataFrame, column: str, interval: int, color: str, title: 
 
 #===========================================================================================================#
 
-def makeIntakePredictions(df: DataFrame, interval: int) -> list:
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23")
+def makeIntakePredictions(dateToday: date, df: DataFrame, interval: int) -> list:
+    figdailycal = PredictTrends(df, "dailycal", interval, 'rgb(46, 184, 46)', "Caloric Intake", "calories")
+    figsleep = PredictTrends(df, "sleephrs", interval, 'rgb(119, 51, 255)', "Hours of Sleep", "hours")
+    figwater = PredictTrends(df, "waterglass", interval, 'rgb(0, 172, 230)', "Water Intake in Glasses", "glasses")
+    figsteps = PredictTrends(df, "steps", interval, 'rgb(51, 204, 51)', "Steps Taken Daily", "steps")
 
-    if trends.count_documents({'date': dateToday.isoformat(), 'type' : 'intake'}, limit = 1) == 0:
-        figdailycal = PredictTrends(df, "dailycal", interval, 'rgb(46, 184, 46)', "Caloric Intake", "calories")
-        figsleep = PredictTrends(df, "sleephrs", interval, 'rgb(119, 51, 255)', "Hours of Sleep", "hours")
-        figwater = PredictTrends(df, "waterglass", interval, 'rgb(0, 172, 230)', "Water Intake in Glasses", "glasses")
-        figsteps = PredictTrends(df, "steps", interval, 'rgb(51, 204, 51)', "Steps Taken Daily", "steps")
+    data = {
+        "date": dateToday.isoformat(),
+        'type' : 'intake',
+        "dailycalplot": loads(figdailycal.to_json()),
+        "sleepplot": loads(figsleep.to_json()),
+        "waterplot": loads(figwater.to_json()),
+        "stepsplot": loads(figsteps.to_json()) ,
+    }
+    post = trends.insert_one(data)
+    del data['_id']
 
-        data = {
-            "date": dateToday.isoformat(),
-            'type' : 'intake',
-            "dailycalplot": loads(figdailycal.to_json()),
-            "sleepplot": loads(figsleep.to_json()),
-            "waterplot": loads(figwater.to_json()),
-            "stepsplot": loads(figsteps.to_json()) ,
-        }
-
-        post = trends.insert_one(data)
-        del data['_id']
-    else: 
-        data = trends.find_one({'date': dateToday.isoformat(), 'type' : 'intake'}, {"_id": 0})
-    return(data)
 
 #===========================================================================================================#
 
-def makeMealPredictions(df: DataFrame, interval: int) -> list:
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23")
-    data = []
-    if trends.count_documents({'date': dateToday.isoformat(), 'type': 'meal'}, limit = 1) == 0:
+def makeMealPredictions(dateToday: date, df: DataFrame, interval: int) -> list:
+    figfat = PredictTrends(df, "fat", interval, 'rgb(255, 153, 0)', "Fat Intake", "fat")
+    figcarbs = PredictTrends(df, "carbs", interval, 'rgb(115, 230, 0)', "Carb Intake", "carbohydrates")
+    figproteins = PredictTrends(df, "proteins", interval, 'rgb(179, 36, 0)', "Protein Intake", "proteins")
+    figcal = PredictTrends(df, "cal", interval, 'rgb(77, 136, 255)', "Calories per Meal", "calories")
+    figwaste = PredictTrends(df, "waste", interval, 'rgb(102, 0, 51)', "Waste", "waste")
 
-        figfat = PredictTrends(df, "fat", interval, 'rgb(255, 153, 0)', "Fat Intake", "fat")
-        figcarbs = PredictTrends(df, "carbs", interval, 'rgb(115, 230, 0)', "Carb Intake", "carbohydrates")
-        figproteins = PredictTrends(df, "proteins", interval, 'rgb(179, 36, 0)', "Protein Intake", "proteins")
-        figcal = PredictTrends(df, "cal", interval, 'rgb(77, 136, 255)', "Calories per Meal", "calories")
-        figwaste = PredictTrends(df, "waste", interval, 'rgb(102, 0, 51)', "Waste", "waste")
-
-        data = {
-            "date": dateToday.isoformat(),
-            'type': 'meal',
-            "fatplot": loads(figfat.to_json()),
-            "carbsplot": loads(figcarbs.to_json()),
-            "proteinsplot": loads(figproteins.to_json()),
-            "calplot": loads(figcal.to_json()),
-            "wasteplot": loads(figwaste.to_json())
-        }
-        post = trends.insert_one(data)
-        del data['_id']
-    else: 
-        data = trends.find_one({'date': dateToday.isoformat(), 'type': 'meal'}, {"_id": 0})
-    return(data)
+    data = {
+        "date": dateToday.isoformat(),
+        'type': 'meal',
+        "fatplot": loads(figfat.to_json()),
+        "carbsplot": loads(figcarbs.to_json()),
+        "proteinsplot": loads(figproteins.to_json()),
+        "calplot": loads(figcal.to_json()),
+        "wasteplot": loads(figwaste.to_json())
+    }
+    post = trends.insert_one(data)
+    del data['_id']
 
 #===========================================================================================================#

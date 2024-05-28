@@ -15,3 +15,5 @@ intakes = db.intakes
 meals = db.meals
 users = db.users
 trends = db.trends
+intakecharts = db.intakecharts
+mealcharts = db.mealcharts
