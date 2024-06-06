@@ -41,9 +41,8 @@ intakecountproject = {'$project': {
 
 #===========================================================================================================#
 
-def getDateInterval(interval: str):
-    #dateToday = date.today()
-    dateToday = date.fromisoformat("2023-11-23") #testing purposes
+def getDateInterval(dateToday: date, interval: str):
+    #dateToday = date.fromisoformat("2023-11-23") #testing purposes
     dateBefore = ''
     if interval == "daily":
         dateBefore = dateToday - timedelta(days=1)
@@ -60,11 +59,11 @@ def getDateInterval(interval: str):
 
 #===========================================================================================================#
 
-def getAvgIntakeData(interval: str):
+def getAvgIntakeData(date: date, interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),
+        getDateInterval(date, interval),
         avgintakegroup
     ]
     df = (intakes.aggregate_pandas_all(pipeline,  schema = AvgIntakeSchema))
@@ -74,13 +73,13 @@ def getAvgIntakeData(interval: str):
 
     return(df)
 
-def getAvgIntakeDataSex(sex: str, interval: str):
+def getAvgIntakeDataSex(date: date, sex: str, interval: str):
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),
+        getDateInterval(date, interval),
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},
@@ -95,23 +94,23 @@ def getAvgIntakeDataSex(sex: str, interval: str):
 
 #===========================================================================================================#
 
-def getIntakeCount(interval: str):
+def getIntakeCount(date: date, interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),
+        getDateInterval(date, interval),
         intakecountproject
     ]
 
     return(intakes.aggregate_pandas_all(pipeline, schema = IntakeCountSchema))
 
-def getIntakeCountSex(sex: str, interval: str):
+def getIntakeCountSex(date: date, sex: str, interval: str):
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),
+        getDateInterval(date, interval),
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},

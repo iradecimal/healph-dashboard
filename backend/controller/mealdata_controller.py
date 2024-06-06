@@ -41,8 +41,8 @@ foodcountproject = { '$project': {
 
 #===========================================================================================================#
 
-def getDatetimeInterval(interval: str):
-    #dateToday = date.today()
+def getDatetimeInterval(dateToday: date, interval: str):
+    #dateToday = date.today() - timedelta(days=1)
     dateToday = date.fromisoformat("2023-11-23")
     datetimeToday = datetime.fromisoformat(dateToday.isoformat())
     datetimeBefore = ''
@@ -61,11 +61,11 @@ def getDatetimeInterval(interval: str):
 
 #===========================================================================================================#
 
-def getFoodGroupsData(interval: str):
+def getFoodGroupsData(date: date, interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),  
+        getDatetimeInterval(date, interval),  
         {'$unwind': '$foodgroups'}, foodgroup
     ]
     df = (meals.aggregate_pandas_all(pipeline, schema = FoodGroupsSchema))
@@ -74,13 +74,13 @@ def getFoodGroupsData(interval: str):
 
     return df
 
-def getFoodGroupsDataSex(sex: str, interval: str):
+def getFoodGroupsDataSex(date: date, sex: str, interval: str):
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),
+        getDatetimeInterval(date, interval),
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},
@@ -94,11 +94,11 @@ def getFoodGroupsDataSex(sex: str, interval: str):
 
 #===========================================================================================================#
 
-def getMealAvgStats(interval: str):
+def getMealAvgStats(date: date, interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),  
+        getDatetimeInterval(date, interval),  
         avgmealgroup
     ]
     df = meals.aggregate_pandas_all(pipeline, schema = FoodAvgSchema)
@@ -108,13 +108,13 @@ def getMealAvgStats(interval: str):
 
     return(df)
 
-def getMealAvgStatsSex(sex: str, interval: str):
+def getMealAvgStatsSex(date: date, sex: str, interval: str):
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),
+        getDatetimeInterval(date, interval),
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},  
         avgmealgroup
@@ -132,7 +132,7 @@ def getMealStats(interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),   
+        getDatetimeInterval(date, interval),   
         foodcountproject
     ]
 
@@ -142,7 +142,7 @@ def getMealStatsSex(sex: str, interval: str):
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),
+        getDatetimeInterval(date, interval),
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},
