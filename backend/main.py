@@ -1,8 +1,9 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from contextlib import asynccontextmanager
 from routes import avgstats, mealcharts, intakecharts, trends, find
-from fastapi_utils.tasks import repeat_every
+import asyncio
+from controller.chartgenerator import chartGenerator
+from starlette.background import BackgroundTasks
 
 app = FastAPI()
 
@@ -17,14 +18,21 @@ app.add_middleware(
 )
 
 
+
 app.include_router(avgstats.router, tags=["avgstats"])
 app.include_router(mealcharts.router, tags=["meals"])
 app.include_router(intakecharts.router, tags=["intakes"])
 app.include_router(trends.router, tags=["trends"])
 app.include_router(find.router, tags=["find"])
-''''
-@app.on_event("startup")
-@repeat_every(seconds= 60 * 60 * 24)
-async def regenerate_charts() -> None:
-    chartGenerator()
-'''
+
+async def generate_charts():
+    while True:
+        chartGenerator()
+        await asyncio.sleep(60*60*24) #wait for 1 day
+        
+
+
+@app.on_event("startup") #port to lifetime eventually, on_event is being deprecated
+async def startup():
+    asyncio.create_task(generate_charts())
+    print("Charts regenerated for today.")

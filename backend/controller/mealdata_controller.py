@@ -42,7 +42,7 @@ foodcountproject = { '$project': {
 #===========================================================================================================#
 
 def getDatetimeInterval(dateToday: date, interval: str):
-    #dateToday = date.fromisoformat("2023-11-23")
+    dateToday = date.fromisoformat("2023-11-23") #for testing purposes while no meal data is available
     datetimeToday = datetime.fromisoformat(dateToday.isoformat())
     datetimeBefore = ''
     if interval == "daily":

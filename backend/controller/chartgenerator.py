@@ -5,9 +5,10 @@ from .meal_controller import generateNewFoodGroups, generateNewMealCount
 
 def chartGenerator():
     dateToday = date.today() - timedelta(days=1)
-    #generateNewTrendsPlot(dateToday)
+    generateNewTrendsPlot(dateToday)
     generateNewIntakePlots(dateToday)
     generateNewMealCount(dateToday)
     generateNewFoodGroups(dateToday)
     print("generation is finished")
+    return 1
     

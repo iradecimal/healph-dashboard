@@ -22,7 +22,7 @@ def getIntakeTrends1Month():
     #dateToday = date.fromisoformat("2023-11-23")
     data = []
     if trends.count_documents({'date': dateToday.isoformat(), 'type' : 'intake'}, limit = 1) == 0:
-            makeIntakeTrends1Month(dateToday)
+        makeIntakeTrends1Month(dateToday)
     
     data = trends.find_one({'date': dateToday.isoformat(), 'type' : 'intake'}, {"_id": 0})
     return(data)
@@ -43,4 +43,5 @@ def getMealTrends1Month():
 def generateNewTrendsPlot(date: date):
     makeIntakeTrends1Month(date)
     makeMealTrends1Month(date)
+    print("trends done")
 

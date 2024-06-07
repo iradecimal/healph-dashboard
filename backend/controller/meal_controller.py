@@ -227,7 +227,7 @@ def generateNewFoodGroups(date: date):
     makeFoodGroupsWeeklySex(date, "M")
     makeFoodGroupsMonthlySex(date, "F")
     makeFoodGroupsMonthlySex(date, "M")
-    print("success")
+    print("food groups done")
 
 def generateNewMealCount(date: date):
     makeMealCountDaily(date)
@@ -239,4 +239,4 @@ def generateNewMealCount(date: date):
     makeMealCountWeeklySex(date, "M")
     makeMealCountMonthlySex(date, "F")
     makeMealCountMonthlySex(date, "M")
-    print("success")
+    print("meal counts done")

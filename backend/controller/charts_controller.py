@@ -107,8 +107,6 @@ def makeMealAdequacyChart(df: DataFrame, dateToday: date, interval: str, sex: st
     figwaste = makeAdequacyPieChart(df, "waste", [0, (40*0.6), (40*0.8), 40, float('inf')], wastelabels, "Food Waste",
                                         ["#FFA86D","#FF7316","#BD4C00","#662900"]
                                       )
-    print(interval)
-    print(sex)
     data = {
         "date": dateToday.isoformat(),
         "type": "meal",
