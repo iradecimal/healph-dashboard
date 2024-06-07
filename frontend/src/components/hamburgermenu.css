@@ -1,36 +1,24 @@
-.sidebar {
-    background-color: #fff;
-    height: 100vh;
-    /*position: fixed;*/
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    padding-left: 10px;
-    height: 100%;
-    border-right: 1px solid #e7e7e7;
-  }
-  
-  .sidebar .nav-link {
+  .navbar .nav-link {
     color: #757575;
     font-size: 1.15em;
     font-weight: 600;
   }
   
-  .sidebar .nav-link:hover {
+  .navbar .nav-link:hover {
     color: #9fc856;
   }
   
-  .sidebar .nav-link.active {
+  .navbar .nav-link.active {
     color: #9fc856;
     font-weight: 600;
   }
   
-  .sidebar .icon {
+  .navbar .icon {
     margin-right: 8px;
     font-size: 24px;
   }
   
-  .sidebar-dropdown {
+  .navbar-dropdown {
     position: fixed;
     padding-bottom: 10px;
     padding-left: 10px;

@@ -46,12 +46,15 @@ const TrendsPage = () => {
         <Container fluid>
             <HamburgerMenu/>
         <Row>
-            <Col md={2} style={{justifyContent: 'left'}}>
+            <Col lg={2} style={{justifyContent: 'left'}}>
                 <Sidebar />
             </Col>
-            <Col md={10}>
-                <h2>User Trends</h2>
-                <Row>
+            <Col lg={10}>
+                <h2>Monthly User Trends</h2>
+                <Row style={{
+                    padding:"0 15px 0 15px",
+                    marginBottom:"20px"
+                }}>
                 {/* <IntervalDropdown
                 options={intervalOptions}
                 selectedInterval={chartInterval}

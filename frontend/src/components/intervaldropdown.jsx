@@ -10,7 +10,7 @@ function IntervalDropdown ({
     
     return(
         <Dropdown className = "interval-picker">
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
+            <Dropdown.Toggle variant="success" id="dropdown-basic" style={{fontSize:"18px", fontWeight:"600"}}>
                 {selectedInterval}
             </Dropdown.Toggle>
 

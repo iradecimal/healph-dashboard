@@ -2,18 +2,19 @@ import {Image, Nav, Navbar} from "react-bootstrap";
 import { MdShowChart, MdBarChart, MdHouse, MdRestaurant } from "react-icons/md";
 import { FaChartColumn, FaChartBar  } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
+import "./hamburgermenu.css";
 
 function HamburgerMenu() {
     const location = useLocation();
     return(
     <>
-        <Navbar collapseOnSelect expand="md" className="bg-body-tertiary d-block d-md-none" >
+        <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary d-block d-lg-none" >
             <Navbar.Brand>
                 <Image
                     src="HEALPHsidebar.png"
                     alt="HEAL-PH"
                     fluid
-                    style={{width: "150px", height:"auto"}}
+                    style={{width: "200px", height:"auto"}}
                 />
             </Navbar.Brand> 
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />

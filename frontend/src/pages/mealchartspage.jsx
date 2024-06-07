@@ -107,12 +107,15 @@ const MealChartsPage = () => {
         <Container fluid>
                 <HamburgerMenu />
             <Row>
-                <Col md={2}>
+                <Col lg={2}>
                     <Sidebar />
                 </Col>
-                <Col md={10}>
+                <Col lg={10}>
                     <h2>Meal Charts</h2>
-                    <Row>
+                    <Row style={{
+                        padding:"0 15px 0 15px",
+                        marginBottom:"20px"
+                    }}>
                     <h3>Food Group Per Plate</h3>
                         <Col sm="auto">
                             <IntervalDropdown
@@ -136,7 +139,7 @@ const MealChartsPage = () => {
                         ) :( 
                             <Container>
                                 <Row>
-                                    <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
+                                    <Col xxl={6} xl={9} style={{ marginBottom: "20px" }}>
                                         <Card>
                                         <Plot 
                                             data = {foodgroupCharts.barplot.data} 
@@ -145,7 +148,7 @@ const MealChartsPage = () => {
                                         />
                                         </Card>
                                     </Col>
-                                    <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
+                                    <Col xxl={6} xl={9} style={{ marginBottom: "20px" }}>
                                         <Card>
                                         <Plot 
                                             data = {foodgroupCharts.pieplot.data} 
@@ -158,8 +161,11 @@ const MealChartsPage = () => {
                             </Container>
                         )}
                     </Row>
-                    <Row>
-                        <h3>Per Plate Analysis</h3>
+                    <Row style={{
+                        padding:"0 15px 0 15px",
+                        marginBottom:"20px"
+                    }}>
+                        <h3>Per Plate Adequacy Analysis</h3>
                         <Col sm="auto">
                             <IntervalDropdown
                             options={countIntervalOptions}
@@ -182,7 +188,7 @@ const MealChartsPage = () => {
                         ) :(
                         <Container>
                             <Row>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <Plot 
                                         data = {countCharts.fatplot.data} 
@@ -193,7 +199,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <Plot 
                                         data = {countCharts.carbsplot.data} 
@@ -204,7 +210,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <Plot 
                                         data = {countCharts.proteinsplot.data} 
@@ -217,7 +223,7 @@ const MealChartsPage = () => {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={6} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <Plot 
                                         data = {countCharts.calplot.data} 
@@ -228,7 +234,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={6} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <Plot 
                                         data = {countCharts.wasteplot.data} 

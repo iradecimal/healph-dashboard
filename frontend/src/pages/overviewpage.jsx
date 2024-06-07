@@ -96,11 +96,11 @@ const OverviewPage = () => {
     <Container fluid>
         <HamburgerMenu/>
     <Row>
-        <Col md={2}>
+        <Col lg={2}>
             <Sidebar />
         </Col>
 
-        <Col md={10}>
+        <Col lg={10}>
         <div>
             <h2>Overview</h2>
             <IntervalDropdown
@@ -123,33 +123,37 @@ const OverviewPage = () => {
                         <Row>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
-                                    icon={<FaBolt />}
+                                    icon={<FaBolt size={25}/>}
                                     label="Avg. Calories"
                                     value={intakeStats.avg.dailycal}
+                                    valuelabel={'kcal'}
                                     percentage={intakeStats.adequacy.dailycal}
                                 />
                             </Col>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
-                                    icon={<FaGlassWater />}
+                                    icon={<FaGlassWater size={25}/>}
                                     label="Avg. Glasses of Water"
                                     value={intakeStats.avg.waterglass}
+                                    valuelabel={'glasses'}
                                     percentage={intakeStats.adequacy.waterglass}
                                 />
                             </Col>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
-                                    icon={<RiFootprintFill />}
+                                    icon={<RiFootprintFill size={25}/>}
                                     label="Avg. Steps Taken"
                                     value={intakeStats.avg.steps}
+                                    valuelabel={'steps'}
                                     percentage={intakeStats.adequacy.steps}
                                 />
                             </Col>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <StatsCard 
-                                    icon={<FaMoon/>}
+                                    icon={<FaMoon size={25}/>}
                                     label="Avg. Hours of Sleep"
                                     value={intakeStats.avg.sleephrs}
+                                    valuelabel={'hours'}
                                     percentage={intakeStats.adequacy.sleephrs}
                                 />
                             </Col>
@@ -157,16 +161,18 @@ const OverviewPage = () => {
                         <Row>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <ScoreCard 
-                                    icon={<FaCircleNotch />}
+                                    icon={<FaCircleNotch size={25}/>}
                                     label="Avg. HALE"
                                     value={intakeStats.avg.hale}
+                                    valuelabel={''}
                                 />
                             </Col>
                             <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                                 <ScoreCard 
-                                    icon={<RiStarFill/>}
+                                    icon={<RiStarFill size={25}/>}
                                     label="Avg. PHD"
                                     value={intakeStats.avg.phd}
+                                    valuelabel={''}
                                 />
                             </Col>
                         </Row>
@@ -188,25 +194,28 @@ const OverviewPage = () => {
                     <Row>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
-                                icon={<FaBreadSlice/>}
+                                icon={<FaBreadSlice size={25}/>}
                                 label="Avg. Carbohydrate Intake"
                                 value={mealStats.avg.carbs}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.carbs}
                             />
                         </Col>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
-                                icon={<FaHamburger/>}
+                                icon={<FaHamburger size={25}/>}
                                 label="Avg. Protein Intake"
                                 value={mealStats.avg.proteins}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.proteins}
                             />
                         </Col>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
-                                icon={<FaOilCan/>}
+                                icon={<FaOilCan size={25}/>}
                                 label="Avg. Fat Intake"
                                 value={mealStats.avg.fat}
+                                valuelabel={'g'}
                                 percentage={mealStats.adequacy.fat}                            
                             />
                         </Col>
@@ -214,18 +223,19 @@ const OverviewPage = () => {
                     <Row>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
                             <StatsCard 
-                                icon={<FaBolt/>}
+                                icon={<FaBolt size={25}/>}
                                 label="Avg. Calories"
                                 value={mealStats.avg.cal}
+                                valuelabel={'kcal'}
                                 percentage={mealStats.adequacy.cal}                            
                             />
                         </Col>
                         <Col xl={2} lg={4} md={6} style={{ marginBottom: "20px" }}>
-                            <StatsCard 
-                                icon={<FaTrash/>}
+                            <ScoreCard 
+                                icon={<FaTrash size={25}/>}
                                 label="Avg. Food Waste"
-                                value={mealStats.avg.waste}
-                                percentage={mealStats.adequacy.waste}                            
+                                valuelabel={'g'}
+                                value={mealStats.avg.waste}                        
                             />
                         </Col>
                     </Row>
