@@ -27,6 +27,7 @@ const IntakeChartsPage = () => {
         axios.get(countChartURL + countChartSex)
         .then((response) => {
             setCountCharts(response.data);
+            console.log(response.data);
             setLoadingCountCharts(false);
         })
         .catch((error) => {

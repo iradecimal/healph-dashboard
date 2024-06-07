@@ -5,6 +5,7 @@ import IntakeChartsPage from "./pages/intakechartpage.jsx";
 import TrendsPage from "./pages/trendspage.jsx";
 import IntakesTablePage from "./pages/intakespage.jsx";
 import MealTablePage from "./pages/mealspage.jsx";
+import AboutPage from "./pages/aboutpage.jsx";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route exact={true} path="/trends" element={<TrendsPage />} />
           <Route exact={true} path="/intakes" element={<IntakesTablePage />} />
           <Route exact={true} path="/meals" element={<MealTablePage />} />
+          <Route exact={true} path="/about" element={<AboutPage />} />
         </Routes>
       </BrowserRouter>
     </div>

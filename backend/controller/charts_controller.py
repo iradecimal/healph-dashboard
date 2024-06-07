@@ -3,7 +3,9 @@ import plotly.graph_objects as go
 import pandas as pd
 from pandas import DataFrame, Series
 from bson.json_util import loads
+from datetime import date
 
+from db import intakecharts, mealcharts
 #===========================================================================================================#
 
 labels = ["0-59%", "60-79%", "80-99%", "100%+"]
@@ -20,8 +22,8 @@ def getIntervals(labels, bins) -> dict:
 
 #===========================================================================================================#
 
-def makeFoodGroupCharts(df: DataFrame, x: str, y: str, orient: str, palette: dict) -> go.Figure:
-    figbar = px.bar(df, x=x, y=y, orientation=orient, color=y, color_discrete_map = palette)
+def makeFoodGroupCharts(df: DataFrame, x: str, y: str, palette: dict, dateToday: date, interval: str, sex: str) -> go.Figure:
+    figbar = px.bar(df, x=x, y=y, orientation='h', color=y, color_discrete_map = palette)
     figbar.update_layout(xaxis_title = "Food Groups", yaxis={'visible': False, 'showticklabels': False}, xaxis={'categoryorder':'total descending'},  autosize = True)
 
     figpie = go.Figure(px.pie(df, values='Count',names='Food Group', color='Food Group', color_discrete_map = palette))
@@ -29,10 +31,16 @@ def makeFoodGroupCharts(df: DataFrame, x: str, y: str, orient: str, palette: dic
     figpie.update_traces(hoverinfo='label+percent', textinfo='none',  sort = False)
 
     data = {
+        "date": dateToday.isoformat(),
+        "type": "foodgroups",
+        "interval": interval,
+        "sex": sex,
         "barplot" : loads(figbar.to_json()),
          "pieplot": loads(figpie.to_json()),
     }
-    return(data)
+
+    post = mealcharts.insert_one(data)
+    del data['_id']
 
 def makeAdequacyPieChart(df: DataFrame, x:str, perbins: list, labels: list, title: str, colors: list):
     bins = pd.cut(df[x], bins=perbins, labels=labels, right=False)
@@ -49,7 +57,7 @@ def makeAdequacyPieChart(df: DataFrame, x:str, perbins: list, labels: list, titl
 
 #===========================================================================================================#
 
-def makeIntakeAdequacyCharts(df: DataFrame) -> list:
+def makeIntakeAdequacyCharts(df: DataFrame, dateToday: date, interval: str, sex: str) -> list:
     figdailycal = makeAdequacyPieChart(df, "dailycal", [0, (2230*0.6), (2230*0.8), 2230, float('inf')], labels, "Daily Calories (in kcal)",
                                         ["#AFEBAF","#7FDF7F","#4FD34F","#2EB82E"]
                                       )
@@ -67,14 +75,19 @@ def makeIntakeAdequacyCharts(df: DataFrame) -> list:
                                    )
 
     data = {
+        "date": dateToday.isoformat(),
+        "interval": interval,
+        "sex": sex,
         "dailycalplot": loads(figdailycal.to_json()),
         "sleepplot": loads(figsleep.to_json()),
         "waterplot": loads(figwater.to_json()),
         "stepsplot": loads(figsteps.to_json()),
     }
-    return(data)
+    post = intakecharts.insert_one(data)
+    
+    del data['_id']
 
-def makeMealAdequacyChart(df: DataFrame) -> list:
+def makeMealAdequacyChart(df: DataFrame, dateToday: date, interval: str, sex: str) -> list:
     figfat = makeAdequacyPieChart(df, "fat", [0, (19*0.6), (19*0.8), 19, float('inf')], labels, "Fat (in g)",
                                         ["#FFDBA4","#7FDF7F","#FFAF37","#FF9900"]
                                       )
@@ -94,14 +107,19 @@ def makeMealAdequacyChart(df: DataFrame) -> list:
     figwaste = makeAdequacyPieChart(df, "waste", [0, (40*0.6), (40*0.8), 40, float('inf')], wastelabels, "Food Waste",
                                         ["#FFA86D","#FF7316","#BD4C00","#662900"]
                                       )
-
     data = {
-       "calplot": loads(figcal.to_json()),
-       "fatplot": loads(figfat.to_json()),
-       "carbsplot": loads(figcarbs.to_json()),
-       "proteinsplot": loads(figproteins.to_json()),
-       "wasteplot": loads(figwaste.to_json())
+        "date": dateToday.isoformat(),
+        "type": "meal",
+        "interval": interval,
+        "sex": sex,
+        "calplot": loads(figcal.to_json()),
+        "fatplot": loads(figfat.to_json()),
+        "carbsplot": loads(figcarbs.to_json()),
+        "proteinsplot": loads(figproteins.to_json()),
+        "wasteplot": loads(figwaste.to_json())
     }
-    return(data)
+    
+    post = mealcharts.insert_one(data)
+    del data['_id']
 
 #===========================================================================================================#
