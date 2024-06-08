@@ -68,11 +68,6 @@ function LifeStyleTable() {
     const onBtnExport = useCallback(() => {
         gridRef.current.api.exportDataAsCsv();
       }, []);
-
-    const onBtnExport = useCallback(() => {
-        gridRef.current.api.exportDataAsCsv();
-      }, []);
-
     return (
         <>
             <Row>
