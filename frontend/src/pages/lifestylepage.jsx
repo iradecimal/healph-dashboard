@@ -1,8 +1,8 @@
 import { Container, Row, Col } from "react-bootstrap";
-import IntakesTable from "../components/intakes_table";
+import LifestyleTable from "../components/lifestyles_table";
 import Sidebar from "../components/sidebar";
 import HamburgerMenu from "../components/hamburgermenu";
-const IntakesTablePage = () => {
+const lifestylesTablePage = () => {
     return (
         <>
         <Container fluid>
@@ -12,11 +12,11 @@ const IntakesTablePage = () => {
                     <Sidebar />
                 </Col>
                 <Col md={10}>
-                    <h2>Daily Intake Data</h2>
+                    <h2>Lifestyle Data</h2>
                     <Row fluid>
-                    <IntakesTable/>
+                    <LifestyleTable/>
                     </Row>
-                    {/* <IntakesTable/> */}
+                    {/* <lifestylesTable/> */}
                 </Col>
             </Row>
         </Container>
@@ -25,4 +25,4 @@ const IntakesTablePage = () => {
     );
 }
 
-export default IntakesTablePage;
+export default lifestylesTablePage;

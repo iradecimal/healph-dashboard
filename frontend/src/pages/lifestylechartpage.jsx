@@ -109,10 +109,13 @@ const IntakeChartsPage = () => {
             <Col lg={2}>
                 <Sidebar />
             </Col>
-            <Col xl={10}>
-                <h2>Intake Charts</h2>
-                <Row>
-                    <h3>Intake Counts</h3>
+            <Col lg={10}>
+                <h2>Lifestyle Charts</h2>
+                <Row  style={{
+                    padding:"0 15px 0 15px",
+                    marginBottom:"20px"
+                }}>
+                    <h3>Lifestyle Adequacy Analysis</h3>
                     <Row fluid>
                         <Col sm="auto">
                             <IntervalDropdown
@@ -141,6 +144,7 @@ const IntakeChartsPage = () => {
                         <Row>
                             <Col xxl={3} xl={5} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Daily Calories (in kcal)</h5>
                                 <Plot 
                                     data = {countCharts.dailycalplot.data} 
                                     layout = {countCharts.dailycalplot.layout}
@@ -152,6 +156,7 @@ const IntakeChartsPage = () => {
                             </Col>
                             <Col xxl={3} xl={5} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                    <h5>Water Intake (in glasses)</h5>
                                 <Plot 
                                     data = {countCharts.waterplot.data} 
                                     layout = {countCharts.waterplot.layout} 
@@ -164,7 +169,8 @@ const IntakeChartsPage = () => {
                         {/* </Row>
                         <Row> */}  
                             <Col xxl={3} xl={5}  style={{ marginBottom: "20px" }}>
-                            <Card>
+                                <Card>
+                                <h5>Sleep Hours (in hrs)</h5>
                                 <Plot 
                                     data = {countCharts.sleepplot.data} 
                                     layout = {countCharts.sleepplot.layout}
@@ -176,6 +182,7 @@ const IntakeChartsPage = () => {
                             </Col>
                             <Col xxl={3} xl={5} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Step Count</h5>
                                 <Plot 
                                     data = {countCharts.stepsplot.data} 
                                     layout = {countCharts.stepsplot.layout}

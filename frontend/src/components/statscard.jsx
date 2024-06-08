@@ -6,6 +6,7 @@ const StatsCard = ({
     icon, 
     label, 
     value,
+    valuelabel,
     percentage
 }) => (
     <Card
@@ -24,13 +25,13 @@ const StatsCard = ({
                 }}
               >
                 {icon} 
-                <span style={{ marginLeft: "10px", color: " #757575" }}>
+                <span style={{ marginLeft: "10px", color: " #757575", fontWeight: "bold" }}>
                     {label}
                 </span>
             </Card.Header>
         <Card.Body>
-            <Card.Text>
-                {Math.round(value * 100)/100}
+            <Card.Text style={{fontWeight: "600", fontSize:"18px"}}>
+                {Math.round(value * 100)/100} {valuelabel}
             </Card.Text>
         </Card.Body>
         <Card.Footer>
@@ -43,6 +44,7 @@ StatsCard.propTypes = {
     icon : PropTypes.object,
     label: PropTypes.string,
     value: PropTypes.number,
+    valuelabel: PropTypes.string,
     percentage: PropTypes.number
 }
 

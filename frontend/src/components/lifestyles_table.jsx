@@ -1,13 +1,18 @@
-import { AgGridReact } from 'ag-grid-react'; // AG Grid Component
-import "ag-grid-community/styles/ag-grid.css"; // Mandatory CSS required by the grid
-import "ag-grid-community/styles/ag-theme-quartz.css"; //
-import { useState, useRef, useMemo, useEffect } from 'react';
+import { useState, useRef, useMemo, useEffect, useCallback, } from 'react';
 import axios from 'axios';
+import {Row, Col, Button } from "react-bootstrap";
+
+import { AgGridReact } from 'ag-grid-react';
+import "ag-grid-community/styles/ag-grid.css";
+import "ag-grid-community/styles/ag-theme-quartz.css";
+import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
+import { CsvExportModule } from "@ag-grid-community/csv-export";
+import { ModuleRegistry } from "@ag-grid-community/core";
+ModuleRegistry.registerModules([ClientSideRowModelModule, CsvExportModule]);
+
 import "./tables.css"
 
-//import "./index.css"
- 
-function IntakesTable() {
+function LifeStyleTable() {
     const gridRef = useRef();
     const [rowData, setRowData] = useState();
     const [columnDefs, setColumnDefs] = useState([
@@ -53,7 +58,6 @@ function IntakesTable() {
     useEffect(() => {
         axios.get(`${import.meta.env.VITE_BACKEND}/find/get-intakes/`)
         .then((response) => {
-            console.log(response.data);
             setRowData(response.data);
         })
         .catch((error) => {
@@ -61,11 +65,24 @@ function IntakesTable() {
         });
     }, [])
 
+    const onBtnExport = useCallback(() => {
+        gridRef.current.api.exportDataAsCsv();
+      }, []);
+
     return (
         <>
-        
+            <Row>
+            <Col lg={3} md={6}>
+                <Button variant="success" size="md" onClick={onBtnExport}
+                style={{fontWeight: "600", fontSize:"16px"}}>
+                    Download CSV export file
+                </Button >
+            </Col>
+            </Row>
+            <Row>
             <div className="ag-theme-quartz" style={{height: '90vh', width: '100%'}}>
                 <AgGridReact
+                ref={gridRef}
                 defaultColDef={defaultColDef}
                 rowData={rowData} 
                 columnDefs={columnDefs}
@@ -77,9 +94,11 @@ function IntakesTable() {
                 alwaysVerticalScroll={true}
                 />
             </div>
+            </Row>
+            
         
         </>
     );
 }
     
-export default IntakesTable;
+export default LifeStyleTable;

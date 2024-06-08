@@ -138,6 +138,7 @@ const MealChartsPage = () => {
                                 <Row>
                                     <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
                                         <Card>
+                                        <h5>Food Group Count</h5>
                                         <Plot 
                                             data = {foodgroupCharts.barplot.data} 
                                             layout = {foodgroupCharts.barplot.layout}
@@ -147,6 +148,7 @@ const MealChartsPage = () => {
                                     </Col>
                                     <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
                                         <Card>
+                                        <h5>Food Group Pie Chart</h5>
                                         <Plot 
                                             data = {foodgroupCharts.pieplot.data} 
                                             layout = {foodgroupCharts.pieplot.layout}
@@ -184,6 +186,7 @@ const MealChartsPage = () => {
                             <Row>
                                 <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
                                     <Card>
+                                    <h5>Fat (in g)</h5>
                                     <Plot 
                                         data = {countCharts.fatplot.data} 
                                         layout = {countCharts.fatplot.layout}
@@ -195,6 +198,7 @@ const MealChartsPage = () => {
                                 </Col>
                                 <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
                                     <Card>
+                                        <h5>Carbohydrates (in g)</h5>
                                     <Plot 
                                         data = {countCharts.carbsplot.data} 
                                         layout = {countCharts.carbsplot.layout}
@@ -206,6 +210,7 @@ const MealChartsPage = () => {
                                 </Col>
                                 <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
                                     <Card>
+                                    <h5>Proteins (in g)</h5>
                                     <Plot 
                                         data = {countCharts.proteinsplot.data} 
                                         layout = {countCharts.proteinsplot.layout}
@@ -219,6 +224,7 @@ const MealChartsPage = () => {
                             <Row>
                                 <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
                                     <Card>
+                                    <h5>Calories (in kcal)</h5>
                                     <Plot 
                                         data = {countCharts.calplot.data} 
                                         layout = {countCharts.calplot.layout}
@@ -230,6 +236,7 @@ const MealChartsPage = () => {
                                 </Col>
                                 <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
                                     <Card>
+                                    <h5>Total Food Waste</h5>
                                     <Plot 
                                         data = {countCharts.wasteplot.data} 
                                         layout = {countCharts.wasteplot.layout}
