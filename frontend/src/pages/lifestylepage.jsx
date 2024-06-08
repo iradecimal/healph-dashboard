@@ -8,7 +8,7 @@ const lifestylesTablePage = () => {
         <Container fluid>
             <Row>
                 <HamburgerMenu />
-                <Col md={2}>
+                <Col lg={2}>
                     <Sidebar />
                 </Col>
                 <Col md={10}>

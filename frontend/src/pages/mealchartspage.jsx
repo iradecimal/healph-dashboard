@@ -107,12 +107,15 @@ const MealChartsPage = () => {
         <Container fluid>
                 <HamburgerMenu />
             <Row>
-                <Col md={2}>
+                <Col lg={2}>
                     <Sidebar />
                 </Col>
-                <Col md={10}>
+                <Col lg={10}>
                     <h2>Meal Charts</h2>
-                    <Row>
+                    <Row style={{
+                        padding:"0 15px 0 15px",
+                        marginBottom:"20px"
+                    }}>
                     <h3>Food Group Per Plate</h3>
                         <Col sm="auto">
                             <IntervalDropdown
@@ -136,7 +139,7 @@ const MealChartsPage = () => {
                         ) :( 
                             <Container>
                                 <Row>
-                                    <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
+                                    <Col xxl={6} xl={9} style={{ marginBottom: "20px" }}>
                                         <Card>
                                         <h5>Food Group Count</h5>
                                         <Plot 
@@ -146,7 +149,7 @@ const MealChartsPage = () => {
                                         />
                                         </Card>
                                     </Col>
-                                    <Col xxl={6} xl={8} style={{ marginBottom: "20px" }}>
+                                    <Col xxl={6} xl={9} style={{ marginBottom: "20px" }}>
                                         <Card>
                                         <h5>Food Group Pie Chart</h5>
                                         <Plot 
@@ -160,8 +163,11 @@ const MealChartsPage = () => {
                             </Container>
                         )}
                     </Row>
-                    <Row>
-                        <h3>Per Plate Analysis</h3>
+                    <Row style={{
+                        padding:"0 15px 0 15px",
+                        marginBottom:"20px"
+                    }}>
+                        <h3>Per Plate Adequacy Analysis</h3>
                         <Col sm="auto">
                             <IntervalDropdown
                             options={countIntervalOptions}
@@ -184,7 +190,7 @@ const MealChartsPage = () => {
                         ) :(
                         <Container>
                             <Row>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <h5>Fat (in g)</h5>
                                     <Plot 
@@ -196,7 +202,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                         <h5>Carbohydrates (in g)</h5>
                                     <Plot 
@@ -208,7 +214,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={4} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={4} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <h5>Proteins (in g)</h5>
                                     <Plot 
@@ -222,7 +228,7 @@ const MealChartsPage = () => {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={6} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <h5>Calories (in kcal)</h5>
                                     <Plot 
@@ -234,7 +240,7 @@ const MealChartsPage = () => {
                                     />
                                     </Card>
                                 </Col>
-                                <Col xxl={6} lg={6} style={{ marginBottom: "20px" }}>
+                                <Col xxl={6} lg={9} style={{ marginBottom: "20px" }}>
                                     <Card>
                                     <h5>Total Food Waste</h5>
                                     <Plot 
