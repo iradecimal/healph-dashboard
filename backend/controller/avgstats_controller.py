@@ -16,10 +16,11 @@ lookupUser = { '$lookup': {
 #AvgFoodSchema = Schema({'fat': float, 'carbs': float, 'protein': float, 'cal': float, 'waste': float})
 
 def getIntakeStats(interval: str):
+    dateToday = date.today() - timedelta(days=1)
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),    
+        getDateInterval(dateToday, interval),    
     { '$group': {
             "_id": None,
             "hale": {'$avg': '$hale'},
@@ -43,12 +44,13 @@ def getIntakeStats(interval: str):
     return(data)
 
 def getIntakeStatsSex(sex: str, interval: str):
+    dateToday = date.today() - timedelta(days=1)
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDateInterval(interval),
+        getDateInterval(dateToday, interval), 
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},   
@@ -76,10 +78,11 @@ def getIntakeStatsSex(sex: str, interval: str):
 
 
 def getMealStats(interval: str):
+    dateToday = date.today() - timedelta(days=1)
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),   
+        getDateInterval(dateToday, interval),   
     { '$group': {
             "_id": None,
             'fat': {'$avg': '$fat'},
@@ -102,12 +105,13 @@ def getMealStats(interval: str):
     return(data)
 
 def getMealStatsSex(sex: str, interval: str):
+    dateToday = date.today() - timedelta(days=1)
     if (sex != 'M' and sex != 'F'):
         raise ValueError("Wrong sex was sent. Please check for capitalization/spelling errors.")
     if (interval != 'daily' and interval != 'weekly' and interval != 'monthly'):
         raise ValueError("Wrong interval was sent. Please check for capitalization/spelling errors.")
     pipeline = [
-        getDatetimeInterval(interval),
+        getDateInterval(dateToday, interval), 
         lookupUser, 
         { '$unwind': '$user_data'},
         { '$match': { 'user_data.sex' : sex}},

@@ -72,6 +72,7 @@ const TrendsPage = () => {
                         <Row>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Caloric Intake</h5>
                                 <Plot 
                                     data = {intakeCharts.dailycalplot.data} 
                                     layout = {intakeCharts.dailycalplot.layout}
@@ -81,6 +82,7 @@ const TrendsPage = () => {
                             </Col>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Hours of Sleep</h5>
                                 <Plot 
                                     data = {intakeCharts.sleepplot.data} 
                                     layout = {intakeCharts.sleepplot.layout}
@@ -92,6 +94,7 @@ const TrendsPage = () => {
                         <Row>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Water Intake in Glasses</h5>
                                 <Plot 
                                     data = {intakeCharts.waterplot.data} 
                                     layout = {intakeCharts.waterplot.layout}
@@ -101,6 +104,7 @@ const TrendsPage = () => {
                             </Col>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Steps Taken Daily</h5>
                                 <Plot 
                                     data = {intakeCharts.stepsplot.data} 
                                     layout = {intakeCharts.stepsplot.layout}
@@ -130,6 +134,7 @@ const TrendsPage = () => {
                         <Row>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Fat Intake</h5>
                                 <Plot 
                                     data = {mealCharts.fatplot.data} 
                                     layout = {mealCharts.fatplot.layout}
@@ -139,6 +144,7 @@ const TrendsPage = () => {
                             </Col>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Protein Intake</h5>
                                 <Plot 
                                     data = {mealCharts.proteinsplot.data} 
                                     layout = {mealCharts.proteinsplot.layout}
@@ -150,6 +156,7 @@ const TrendsPage = () => {
                         <Row>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Carbohydrate Intake</h5>
                                 <Plot 
                                     data = {mealCharts.carbsplot.data} 
                                     layout = {mealCharts.carbsplot.layout}
@@ -159,6 +166,7 @@ const TrendsPage = () => {
                             </Col>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Caloric Intake</h5>
                                 <Plot 
                                     data = {mealCharts.calplot.data} 
                                     layout = {mealCharts.calplot.layout}
@@ -170,6 +178,7 @@ const TrendsPage = () => {
                         <Row>
                             <Col xl={6} lg={8} style={{ marginBottom: "20px" }}>
                                 <Card>
+                                <h5>Food Waste</h5>
                                 <Plot 
                                     data = {mealCharts.wasteplot.data} 
                                     layout = {mealCharts.wasteplot.layout}

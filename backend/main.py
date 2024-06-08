@@ -29,10 +29,11 @@ async def generate_charts():
     while True:
         chartGenerator()
         await asyncio.sleep(60*60*24) #wait for 1 day
+        print("Regenerating charts for today.")
         
 
 
 @app.on_event("startup") #port to lifetime eventually, on_event is being deprecated
 async def startup():
     asyncio.create_task(generate_charts())
-    print("Charts regenerated for today.")
+    

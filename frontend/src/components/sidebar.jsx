@@ -1,5 +1,5 @@
 import {Container, Image, Nav} from "react-bootstrap";
-import { MdShowChart, MdBarChart, MdHouse, MdRestaurant } from "react-icons/md";
+import { MdShowChart, MdBarChart, MdHouse, MdRestaurant, MdInfo  } from "react-icons/md";
 import { FaChartColumn, FaChartBar  } from "react-icons/fa6";
 import { useLocation } from "react-router-dom";
 import "./sidebar.css";
@@ -10,7 +10,15 @@ function Sidebar() {
     <>
         <Nav
         className="sidebar flex-column d-none d-lg-block"
+        className="sidebar flex-column d-none d-lg-block"
         >
+            <Container className=".d-lg-none">
+                <Image fluid="true"
+                    src="HEALPHsidebar.png"
+                    alt="Sidebar Logo"
+                    style={{width: "200px", height:"auto"}} 
+                />
+            </Container>
             <Container className=".d-lg-none">
                 <Image fluid="true"
                     src="HEALPHsidebar.png"
@@ -22,19 +30,21 @@ function Sidebar() {
                 <Nav.Link href="/"
                 active ={location.pathname === "/"} >
                     <MdHouse className="icon" size={32}/>
+                    <MdHouse className="icon" size={32}/>
                     Overview
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/intakecharts"
-                 active ={location.pathname === "/intakecharts"} >
+                <Nav.Link href="/lifestylecharts"
+                 active ={location.pathname === "/lifestylecharts"} >
                     <FaChartColumn className="icon" size={32}/>
-                    Intake Charts
+                    Lifestyle Charts
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
                 <Nav.Link href="/mealcharts"
                  active ={location.pathname === "/mealcharts"} >
+                    <FaChartBar className="icon" size={32}/>
                     <FaChartBar className="icon" size={32}/>
                     Meal Charts
                 </Nav.Link>
@@ -43,21 +53,30 @@ function Sidebar() {
                 <Nav.Link href="/trends"
                 active ={location.pathname === "/trends"}>
                     <MdShowChart className="icon" size={32}/>
+                    <MdShowChart className="icon" size={32}/>
                     Trends
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-                <Nav.Link href="/intakes"
-                active ={location.pathname === "/intakes"}>
+                <Nav.Link href="/lifestyles"
+                active ={location.pathname === "/lifestyles"}>
                     <MdBarChart className="icon" size={32}/>
-                    Intakes
+                    Lifestyle
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item>
                 <Nav.Link href="/meals"
                 active ={location.pathname === "/meals"}>
                     <MdRestaurant className="icon" size={32}/>
+                    <MdRestaurant className="icon" size={32}/>
                     Meals   
+                </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+                <Nav.Link href="/about"
+                 active ={location.pathname === "/about"} >
+                    <MdInfo className="icon" size={32}/>
+                    About
                 </Nav.Link>
             </Nav.Item>
         </Nav>

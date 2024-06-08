@@ -37,7 +37,7 @@ const OverviewPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving meal data:", error);
-            setLoadingMealStats(false);
+            //setLoadingMealStats(false);
         });
         axios.get(`${import.meta.env.VITE_BACKEND}/avgstats/daily/intake`)
         .then((response) => {
@@ -46,7 +46,7 @@ const OverviewPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving intake data:", error);
-            setLoadingIntakeStats(false);
+            //setLoadingIntakeStats(false);
         });
         axios.get(`${import.meta.env.VITE_BACKEND}/avgstats/activity`)
         .then((response) => {
@@ -55,7 +55,7 @@ const OverviewPage = () => {
         })
         .catch((error) => {
             console.error("Error retrieving intake data:", error);
-            setLoadingIntakeStats(false);
+            //setLoadingIntakeStats(false);
         });
     }, []);
 
@@ -77,6 +77,7 @@ const OverviewPage = () => {
         axios.get(mealAPIURL)
         .then((response) => {
             setMealStats(response.data);
+            setLoadingMealStats(false);
         })
         .catch((error) => {
             console.error("Error retrieving meal data:", error);
@@ -85,6 +86,7 @@ const OverviewPage = () => {
         axios.get(intakeAPIURL)
         .then((response) => {
             setIntakeStats(response.data);
+            setLoadingIntakeStats(false);
         })
         .catch((error) => {
             console.error("Error retrieving intake data:", error);

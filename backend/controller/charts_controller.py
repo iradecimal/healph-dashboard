@@ -48,7 +48,7 @@ def makeAdequacyPieChart(df: DataFrame, x:str, perbins: list, labels: list, titl
     countdf = pd.DataFrame({'Adequacy':groups.index, 'Count':groups.values})
     countdf['Interval'] = countdf['Adequacy'].map(getIntervals(labels, perbins))
     
-    fig = go.Figure(px.pie(countdf, values = 'Count', names = 'Adequacy', color = 'Adequacy', hole = 0.4, title = title, 
+    fig = go.Figure(px.pie(countdf, values = 'Count', names = 'Adequacy', color = 'Adequacy', hole = 0.4,
                            custom_data = ['Interval'], color_discrete_map = dict(map(lambda i,j : (i,j), labels, colors))))
     fig.update_layout(autosize=True)
     fig.update_traces(sort=False, hovertemplate = "<br>Interval: %{customdata}<br>Count: %{value}")
