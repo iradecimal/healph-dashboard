@@ -10,16 +10,6 @@ import { CsvExportModule } from "@ag-grid-community/csv-export";
 import { ModuleRegistry } from "@ag-grid-community/core";
 ModuleRegistry.registerModules([ClientSideRowModelModule, CsvExportModule]);
 
-import {Row, Col, Button } from "react-bootstrap";
-
-import { AgGridReact } from 'ag-grid-react';
-import "ag-grid-community/styles/ag-grid.css";
-import "ag-grid-community/styles/ag-theme-quartz.css";
-import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
-import { CsvExportModule } from "@ag-grid-community/csv-export";
-import { ModuleRegistry } from "@ag-grid-community/core";
-ModuleRegistry.registerModules([ClientSideRowModelModule, CsvExportModule]);
-
 import "./tables.css"
 
 function LifeStyleTable() {
