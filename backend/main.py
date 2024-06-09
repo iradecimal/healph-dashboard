@@ -35,5 +35,6 @@ async def generate_charts():
 
 @app.on_event("startup") #port to lifetime eventually, on_event is being deprecated
 async def startup():
-    asyncio.create_task(generate_charts())
+    #asyncio.create_task(generate_charts())
+    print("hi")
     
