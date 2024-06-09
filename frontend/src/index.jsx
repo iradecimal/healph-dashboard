@@ -7,6 +7,7 @@ import LifestylesTablePage from "./pages/lifestylepage.jsx";
 import MealTablePage from "./pages/mealspage.jsx";
 import AboutPage from "./pages/aboutpage.jsx";
 
+
 function App() {
   return (
     <div className="App">
